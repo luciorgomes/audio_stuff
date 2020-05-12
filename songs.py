@@ -31,10 +31,10 @@ class App:
         # demais widgets
         Label(self.frame1, text='Musescore', bg='#2b355a', fg='#c2c2c2', font='Arial 11 bold',
               pady=3).grid(row=0, column=0)
-        self.list_muse = Listbox(self.frame1, width=91, height=20, bg='#31363b', fg='#eff0f1',
+        self.list_muse = Listbox(self.frame1, width=85, height=20, bg='#31363b', fg='#eff0f1',
                                  highlightbackground='#125487', selectbackground='#125487',
                                  selectforeground='orange')
-        self.list_muse.grid(row=1, column=0)
+        self.list_muse.grid(row=1, column=0, padx=7)
         self.list_muse.bind("<Return>", self.choice_select_muse)  # com um Enter chama a rotina correspondente.
         self.list_muse.bind('<Escape>', self.exit)  # com um Esc encera o programa
         Button(self.frame1, text='Run', command=self.choice_select_muse).grid(row=2, column=0)
@@ -44,10 +44,10 @@ class App:
         self.frame2.pack()
         Label(self.frame2, text='Ardour / Mixbus', bg='#3d3d3d', fg='#c2c2c2', font='Arial 11 bold',
               pady=3).grid(row=0, column=0, columnspan=2)
-        self.list_ard_mix = Listbox(self.frame2, width=91, height=20, bg='#31363b', fg='#eff0f1',
+        self.list_ard_mix = Listbox(self.frame2, width=85, height=20, bg='#31363b', fg='#eff0f1',
                                  highlightbackground='#125487', selectbackground='#125487',
                                  selectforeground='orange')
-        self.list_ard_mix.grid(row=1, column=0, columnspan=2)
+        self.list_ard_mix.grid(row=1, column=0, columnspan=2, padx=7)
         self.list_ard_mix.bind("<Return>", self.choice_select_mixbus)  # com um Enter chama a rotina correspondente.
         self.list_ard_mix.bind('<Escape>', self.exit)  # com um Esc encera o programa
         Button(self.frame2, text='Run Ardour', command=self.choice_select_ardour).grid(row=2, column=0)
@@ -63,7 +63,7 @@ class App:
         self.root.title('Sons')
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
-        largura = 735
+        largura = 700
         altura = 931
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
@@ -74,8 +74,8 @@ class App:
         self.root.geometry('%dx%d+%d+%d' % (largura, altura, posx, posy))  # dimensões + posição inicial
 
     def abre_audio_links(self):
-        import audio_file
-        audio_file.audio_file()
+        import audio_links
+        audio_links.audio_links()
 
     def abre_carla_banks(self):
         import carla_banks

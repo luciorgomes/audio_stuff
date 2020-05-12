@@ -29,10 +29,10 @@ class App:
         self.frame1=Frame(self.root, bg='#3e0000') ##3877ad
         self.frame1.pack()
         Label(self.frame1, text='Amps', bg='#3e0000', fg='#c2c2c2', font='Arial 11 bold', pady=3).pack()
-        self.list_amps = Listbox(self.frame1, width=100, height=11, bg='#31363b', fg='#eff0f1',
+        self.list_amps = Listbox(self.frame1, width=75, height=11, bg='#31363b', fg='#eff0f1',
                                  highlightbackground='#125487', selectbackground='#125487',
                                  selectforeground='orange')
-        self.list_amps.pack()
+        self.list_amps.pack(padx=7)
         self.list_amps.bind("<Return>", self.choice_select_amp)  # com um Enter chama a rotina correspondente.
         self.list_amps.bind('<Escape>', self.exit)  # com um Esc encera o programa
         Button(self.frame1, text='Run', command=self.choice_select_amp).pack()
@@ -41,10 +41,10 @@ class App:
         self.frame2=Frame(self.root, bg='#002839')
         self.frame2.pack()
         Label(self.frame2, text='Synth', bg='#002839', fg='#c2c2c2', font='Arial 11 bold', pady=3).pack()
-        self.list_synth = Listbox(self.frame2, width=100, height=11, bg='#31363b', fg='#eff0f1',
+        self.list_synth = Listbox(self.frame2, width=75, height=11, bg='#31363b', fg='#eff0f1',
                                  highlightbackground='#125487', selectbackground='#125487',
                                  selectforeground='orange')
-        self.list_synth.pack()
+        self.list_synth.pack(padx=7)
         self.list_synth.bind("<Return>", self.choice_select_synth)  # com um Enter chama a rotina correspondente.
         self.list_synth.bind('<Escape>', self.exit)  # com um Esc encera o programa
         Button(self.frame2, text='Run', command=self.choice_select_synth).pack()
@@ -53,10 +53,10 @@ class App:
         self.frame3=Frame(self.root, bg='#202d39')
         self.frame3.pack()
         Label(self.frame3, text='Todos', bg='#202d39', fg='#c2c2c2', font='Arial 11 bold', pady=3).pack()
-        self.list_outros = Listbox(self.frame3, width=100, height=14, bg='#31363b', fg='#eff0f1',
+        self.list_outros = Listbox(self.frame3, width=75, height=14, bg='#31363b', fg='#eff0f1',
                                  highlightbackground='#125487', selectbackground='#125487',
                                  selectforeground='orange')
-        self.list_outros.pack()
+        self.list_outros.pack(padx=7)
         self.list_outros.bind("<Return>", self.choice_select_outros)  # com um Enter chama a rotina correspondente.
         self.list_outros.bind('<Escape>', self.exit)  # com um Esc encera o programa
         Button(self.frame3, text='Run', command=self.choice_select_outros).pack()
@@ -74,7 +74,7 @@ class App:
         self.root.title('Carla Banks')
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
-        largura = 735
+        largura = 620
         altura = 926
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
@@ -85,8 +85,8 @@ class App:
         self.root.geometry('%dx%d+%d+%d' % (largura, altura, posx, posy))  # dimensões + posição inicial
 
     def abre_audio_links(self):
-        import audio_file
-        audio_file.audio_file()
+        import audio_links
+        audio_links.audio_links()
 
     def abre_songs(self):
         import songs
