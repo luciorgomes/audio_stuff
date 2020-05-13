@@ -54,6 +54,7 @@ class App:
     def define_raiz(self):
         '''Define caracterísicas da janela'''
         self.root.title('Audio Links')
+        self.root.resizable(False, False)
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
         largura = 620
