@@ -40,7 +40,7 @@ apps_dict={
     'Qsampler': 'qsampler',
     'Qsynth': 'qsynth',
     'Rakarrack': 'rakarrack',
-    'RaySesion': 'raysession',
+    'RaySession': 'raysession',
     'Regrader': 'regrader',
     'Rosegarden': 'rosegarden',
     'Samplv1': 'samplv1_jack',
