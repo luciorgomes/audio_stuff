@@ -16,7 +16,7 @@ class App:
         self.frame = Frame(self.root, bg='#2b4970', width=90)
         self.frame.pack()
         Label(self.frame, text='Apps', font='Ubuntu 11 bold', bg='#2b4970').grid(row=0, column=0)
-        self.list_box_apps = Listbox(self.frame, width=29, height=27, bg='#31363b', fg='#eff0f1',
+        self.list_box_apps = Listbox(self.frame, width=29, height=20, bg='#31363b', fg='#eff0f1',
                                 highlightbackground='#125487', selectbackground='#125487',
                                 selectforeground='orange')
         self.list_box_apps.grid(row=1, column=0, padx=5, pady=2)
@@ -31,7 +31,7 @@ class App:
 
         # segunda lista
         Label(self.frame, text='Banks / Songs', font='Ubuntu 11 bold', bg='#2b4970').grid(row=0, column=1)
-        self.list_box_banks_songs = Listbox(self.frame, width=29, height=27, bg='#31363b', fg='#eff0f1',
+        self.list_box_banks_songs = Listbox(self.frame, width=29, height=20, bg='#31363b', fg='#eff0f1',
                                  highlightbackground='#125487', selectbackground='#125487',
                                  selectforeground='orange')
         self.list_box_banks_songs.grid(row=1, column=1, padx=5, pady=2)
@@ -60,7 +60,7 @@ class App:
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
         largura = 492
-        altura = 607
+        altura = 468
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
         altura_screen = self.root.winfo_screenheight()
