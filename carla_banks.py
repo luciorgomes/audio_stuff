@@ -33,6 +33,7 @@ class App:
                                  highlightbackground='#125487', selectbackground='#125487',
                                  selectforeground='orange')
         self.list_amps.pack(padx=7)
+        self.list_amps.bind("<Double-Button-1>", self.choice_select_amp)  # com um Enter chama a rotina correspo
         self.list_amps.bind("<Return>", self.choice_select_amp)  # com um Enter chama a rotina correspondente.
         self.list_amps.bind('<Escape>', self.exit)  # com um Esc encera o programa
         Button(self.frame1, text='Run', command=self.choice_select_amp).pack()
@@ -45,6 +46,7 @@ class App:
                                  highlightbackground='#125487', selectbackground='#125487',
                                  selectforeground='orange')
         self.list_synth.pack(padx=7)
+        self.list_synth.bind("<Double-Button-1>", self.choice_select_synth)  # com um Enter chama a rotina correspondente.
         self.list_synth.bind("<Return>", self.choice_select_synth)  # com um Enter chama a rotina correspondente.
         self.list_synth.bind('<Escape>', self.exit)  # com um Esc encera o programa
         Button(self.frame2, text='Run', command=self.choice_select_synth).pack()
@@ -57,6 +59,7 @@ class App:
                                  highlightbackground='#125487', selectbackground='#125487',
                                  selectforeground='orange')
         self.list_outros.pack(padx=7)
+        self.list_outros.bind("<Double-Button-1>", self.choice_select_outros)  # com um Enter chama a rotina correspondente.
         self.list_outros.bind("<Return>", self.choice_select_outros)  # com um Enter chama a rotina correspondente.
         self.list_outros.bind('<Escape>', self.exit)  # com um Esc encera o programa
         Button(self.frame3, text='Run', command=self.choice_select_outros).pack()

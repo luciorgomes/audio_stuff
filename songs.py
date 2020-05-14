@@ -35,6 +35,7 @@ class App:
                                  highlightbackground='#125487', selectbackground='#125487',
                                  selectforeground='orange')
         self.list_muse.grid(row=1, column=0, padx=7)
+        self.list_muse.bind("<Double-Button-1>", self.choice_select_muse)  # com um Enter chama a rotina correspondente.
         self.list_muse.bind("<Return>", self.choice_select_muse)  # com um Enter chama a rotina correspondente.
         self.list_muse.bind('<Escape>', self.exit)  # com um Esc encera o programa
         Button(self.frame1, text='Run', command=self.choice_select_muse).grid(row=2, column=0)
@@ -48,6 +49,7 @@ class App:
                                  highlightbackground='#125487', selectbackground='#125487',
                                  selectforeground='orange')
         self.list_ard_mix.grid(row=1, column=0, columnspan=2, padx=7)
+        self.list_ard_mix.bind("<Double-Button-1>", self.choice_select_mixbus)  # com um Enter chama a rotina correspondente.
         self.list_ard_mix.bind("<Return>", self.choice_select_mixbus)  # com um Enter chama a rotina correspondente.
         self.list_ard_mix.bind('<Escape>', self.exit)  # com um Esc encera o programa
         Button(self.frame2, text='Run Ardour', command=self.choice_select_ardour).grid(row=2, column=0)

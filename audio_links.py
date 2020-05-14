@@ -25,7 +25,7 @@ class App:
             self.list_box_apps.insert(END, key)
 
         Button(self.frame, text='Run', command=self.choice_select_apps).grid(row=2, column=0, pady=3)
-
+        self.list_box_apps.bind("<Double-Button-1>", self.choice_select_apps)  # com um duplo clique chama a rotina correspondente.
         self.list_box_apps.bind("<Return>", self.choice_select_apps)  # com um Enter chama a rotina correspondente.
         self.list_box_apps.bind('<Escape>', self.exit)  # com um Esc encera o programa
 
@@ -44,8 +44,7 @@ class App:
             self.list_box_banks_songs.insert(END, item)
 
         Button(self.frame, text='Run', command=self.choice_select_banks_songs).grid(row=2, column=1, pady=3)
-        # self.list_box_banks_songs.bind("<Double-Button>",
-        #                    self.choice_select_banks_songs)  # com um duplo clique chama a rotina correspondente.
+        self.list_box_banks_songs.bind("<Double-Button-1>", self.choice_select_banks_songs)  # com um duplo clique chama a rotina correspondente.
         self.list_box_banks_songs.bind("<Return>", self.choice_select_banks_songs)  # com um Enter chama a rotina correspondente.
         self.list_box_banks_songs.bind('<Escape>', self.exit)  # com um Esc encera o programa
 
