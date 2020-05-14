@@ -3,52 +3,54 @@
 
 from tkinter import *
 import os
+from dict import apps_dict
+# from dict import banks_songs
 
 class App:
     def __init__(self):
         self.root = Tk()
         '''Instancia o Frame com o Listbox com a relação de aplicativos'''
-        self.choices_apps = ['Cadence Logs',
-                        'Cadence Jack Meter',
-                        'Cadence XY Controller',
-                        'Cadence Render'
-                        ]
-        self.choices_apps = sorted(self.choices_apps)
-        self.choices_banks_songs = ['Carla banks',
-                        'Sons - Musescore / Ardour / Mixbus',
-                        'Sons - Base DB']
-        self.choices_banks_songs = sorted(self.choices_banks_songs)
 
         # create_widgets
+        # primeira lista
         self.frame = Frame(self.root, bg='#2b4970', width=90)
         self.frame.pack()
         Label(self.frame, text='Apps', font='Ubuntu 11 bold', bg='#2b4970').grid(row=0, column=0)
-        self.list_box_apps = Listbox(self.frame, width=37, height=25, bg='#31363b', fg='#eff0f1',
+        self.list_box_apps = Listbox(self.frame, width=29, height=27, bg='#31363b', fg='#eff0f1',
                                 highlightbackground='#125487', selectbackground='#125487',
                                 selectforeground='orange')
         self.list_box_apps.grid(row=1, column=0, padx=5, pady=2)
-        for item in self.choices_apps:
-            self.list_box_apps.insert(END, item)
 
-        self.list_box_apps.bind("<Double-Button>",
-                           self.choice_select_apps)  # com um duplo clique chama a rotina correspondente.
+        for key in sorted(apps_dict.keys()): # carrega a lista com as chaves do dicionário
+            self.list_box_apps.insert(END, key)
+
+        Button(self.frame, text='Run', command=self.choice_select_apps).grid(row=2, column=0, pady=3)
+
         self.list_box_apps.bind("<Return>", self.choice_select_apps)  # com um Enter chama a rotina correspondente.
         self.list_box_apps.bind('<Escape>', self.exit)  # com um Esc encera o programa
 
+        # segunda lista
         Label(self.frame, text='Banks / Songs', font='Ubuntu 11 bold', bg='#2b4970').grid(row=0, column=1)
-        self.list_box_banks_songs = Listbox(self.frame, width=37, height=25, bg='#31363b', fg='#eff0f1',
+        self.list_box_banks_songs = Listbox(self.frame, width=29, height=27, bg='#31363b', fg='#eff0f1',
                                  highlightbackground='#125487', selectbackground='#125487',
                                  selectforeground='orange')
         self.list_box_banks_songs.grid(row=1, column=1, padx=5, pady=2)
-        for item in self.choices_banks_songs:
+
+        self.choices_banks_songs = ['Carla banks',
+                                    'Sons - Musescore / Ardour / Mixbus',
+                                    'Sons - Base DB']
+
+        for item in sorted(self.choices_banks_songs):
             self.list_box_banks_songs.insert(END, item)
-        self.list_box_banks_songs.bind("<Double-Button>",
-                           self.choice_select_banks_songs)  # com um duplo clique chama a rotina correspondente.
+
+        Button(self.frame, text='Run', command=self.choice_select_banks_songs).grid(row=2, column=1, pady=3)
+        # self.list_box_banks_songs.bind("<Double-Button>",
+        #                    self.choice_select_banks_songs)  # com um duplo clique chama a rotina correspondente.
         self.list_box_banks_songs.bind("<Return>", self.choice_select_banks_songs)  # com um Enter chama a rotina correspondente.
         self.list_box_banks_songs.bind('<Escape>', self.exit)  # com um Esc encera o programa
 
         self.list_box_apps.focus()  # define o foco para o listbox
-        self.define_raiz()
+        self.define_raiz() # define raiz
         self.root.mainloop()
 
     def define_raiz(self):
@@ -57,8 +59,8 @@ class App:
         self.root.resizable(False, False)
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
-        largura = 620
-        altura = 530
+        largura = 492
+        altura = 607
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
         altura_screen = self.root.winfo_screenheight()
@@ -67,43 +69,28 @@ class App:
         posy = altura_screen / 2 - altura / 2  # meio da primeira tela
         self.root.geometry('%dx%d+%d+%d' % (largura, altura, posx, posy))  # dimensões + posição inicial
 
-    def chama_rotina(self, choice):
-        '''Chama a rotina selecionada no Listbox'''
+    def choice_select_apps(self, event=None):
+        '''Recupera o item selecionado no Listbox e chama o aplicativo'''
+        choice = self.list_box_apps.get(ACTIVE)
+        #self.root.destroy()
         print(choice)
-        if choice is None:
-            print('Tchau!')
-        elif choice == 'Cadence Logs':
-            os.system('cadence-logs')
-        elif choice == 'Cadence Jack Meter':
-            os.system('cadence-jackmeter')
-        elif choice == 'Cadence XY Controller':
-            os.system('cadence-xycontroller')
-        elif choice == 'Cadence Render':
-            os.system('cadence-render')
-        elif choice == 'Cadence Render':
-            os.system('cadence-render')
-        elif choice == 'Carla banks':
+        os.system(apps_dict[choice] + ' &') # recupera o comando do dicionário
+
+    def choice_select_banks_songs(self, event=None):
+        '''Recupera o item selecionado no Listbox e chama o banco ou música'''
+        choice_b = self.list_box_banks_songs.get(ACTIVE)
+        #self.root.destroy()
+        if choice_b == 'Carla banks':
             import carla_banks
             print('Executando carla_banks')
             carla_banks.carla_banks()
-        elif choice == 'Sons - Musescore / Ardour / Mixbus':
+        elif choice_b == 'Sons - Musescore / Ardour / Mixbus':
             import songs
             print('Executando songs')
             songs.songs()
-        elif choice == 'Sons - Base DB':
-            os.system("libreoffice '/mnt/HD Externo/Sons/Sons.odb'")
+        elif choice_b == 'Sons - Base DB':
+            os.system("libreoffice '/mnt/HD Externo/Sons/Sons.odb' &" )
 
-    def choice_select_apps(self, event):
-        '''Recupera o item selecionado no Listbox e chama o método chama_rotina()'''
-        self.ch = self.list_box_apps.get(ACTIVE)
-        #self.root.destroy()
-        self.chama_rotina(self.ch)
-
-    def choice_select_banks_songs(self, event):
-        '''Recupera o item selecionado no Listbox e chama o método chama_rotina()'''
-        self.ch = self.list_box_banks_songs.get(ACTIVE)
-        #self.root.destroy()
-        self.chama_rotina(self.ch)
 
     def exit(self,event=None):
         self.root.destroy()
