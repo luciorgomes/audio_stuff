@@ -24,8 +24,6 @@ class App:
         self.menu = Menu(self.root)
         self.menu_itens = Menu(self.menu, tearoff=0)
         self.menu_itens.add_command(label='Audio Links',  font='Helvetiva 10', command=self.abre_audio_links)
-        self.menu_itens.add_command(label='Carla Banks',  font='Helvetiva 10', command=self.abre_carla_banks)
-        self.menu_itens.add_command(label='Songs',  font='Helvetiva 10', command=self.abre_songs)
         self.menu.add_cascade(label='Outros', font='Helvetiva 10', menu=self.menu_itens)
         self.root.config(menu=self.menu)
 
@@ -65,14 +63,6 @@ class App:
     def abre_audio_links(self):
         import audio_links
         audio_links.audio_links()
-
-    def abre_carla_banks(self):
-        import carla_banks
-        carla_banks.carla_banks()
-
-    def abre_songs(self):
-        import songs
-        songs.songs()
 
     def atualiza_listas(self):
         list=[]
