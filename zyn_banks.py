@@ -1,12 +1,12 @@
 #! /usr/bin/python3
-# helm_banks.py - Bancos do Helm
+# zyn_banks.py - Bancos do Helm
 
 from tkinter import *
 import tkinter.ttk as ttk
 import os
 
-HELM_FOLDER = '/mnt/HD Externo/Bancos e Patches/Helm/'
-EXTENSAO = '.helm'
+ZYN_FOLDER = '/mnt/HD Externo/Bancos e Patches/Zynaddsubfx/'
+EXTENSAO = '.xiz'
 
 class App:
 
@@ -17,7 +17,7 @@ class App:
 
         # create_widgets:
         '''Cria os Listbox e inclui os itens da lista self.choices...'''
-        self.frame1=Frame(self.root, bg='#1b7bcf') ##3877ad
+        self.frame1=Frame(self.root, bg='#00818e') ##3877ad
         self.frame1.pack()
 
         # menus
@@ -30,16 +30,16 @@ class App:
         self.root.config(menu=self.menu)
 
         # demais widgets
-        Label(self.frame1, text='Helm', bg='#1b7bcf', fg='black', font='Arial 11 bold',
+        Label(self.frame1, text='ZynAddSubFX', bg='#00818e', fg='black', font='Arial 11 bold',
               pady=3).grid(row=0, column=0)
-        self.list_helm = Listbox(self.frame1, width=85, height=18, bg='#31363b', fg='#eff0f1',
-                                 highlightbackground='#125487', selectbackground='#125487',
-                                 selectforeground='orange')
-        self.list_helm.grid(row=1, column=0, padx=7)
-        self.list_helm.bind("<Double-Button-1>", self.choice_select_helm)  # com um Enter chama a rotina correspondente.
-        self.list_helm.bind("<Return>", self.choice_select_helm)  # com um Enter chama a rotina correspondente.
-        self.list_helm.bind('<Escape>', self.exit)  # com um Esc encera o programa
-        Button(self.frame1, text='Run', command=self.choice_select_helm).grid(row=2, column=0)
+        self.list_zyn = Listbox(self.frame1, width=85, height=18, bg='#31363b', fg='#eff0f1',
+                                highlightbackground='#125487', selectbackground='#125487',
+                                selectforeground='orange')
+        self.list_zyn.grid(row=1, column=0, padx=7)
+        self.list_zyn.bind("<Double-Button-1>", self.choice_select)  # com um Enter chama a rotina correspondente.
+        self.list_zyn.bind("<Return>", self.choice_select)  # com um Enter chama a rotina correspondente.
+        self.list_zyn.bind('<Escape>', self.exit)  # com um Esc encera o programa
+        Button(self.frame1, text='Run', command=self.choice_select).grid(row=2, column=0)
         ttk.Separator(self.frame1, orient=HORIZONTAL).grid(row=3, column=0, columnspan=2, sticky='we')
 
         self.atualiza_listas()
@@ -76,26 +76,26 @@ class App:
 
     def atualiza_listas(self):
         list=[]
-        for foldername, subfolders, filenames in os.walk(HELM_FOLDER):
+        for foldername, subfolders, filenames in os.walk(ZYN_FOLDER):
             for filename in filenames:
                 if filename.endswith(EXTENSAO):
-                    list.append(os.path.join(foldername[len(HELM_FOLDER):], filename[:-5])) #Nome sem extensão e caminho
+                    list.append(os.path.join(foldername[len(ZYN_FOLDER):], filename[:-4])) #Nome sem extensão e caminho
         list_m = sorted(list)
         for item in list_m:
-            self.list_helm.insert(END, item)
+            self.list_zyn.insert(END, item)
 
-    def choice_select_helm(self, event=None):
+    def choice_select(self, event=None):
         '''Recupera o item selecionado no Listbox e chama o método chama_rotina()'''
-        choice = self.list_helm.get(ACTIVE)
-        print(f'Executando Helm {choice}')
+        choice = self.list_zyn.get(ACTIVE)
+        print(f'Executando zynaddsubfx {choice}')
         # self.root.destroy()
-        os.system(f"Helm '{HELM_FOLDER}{choice}{EXTENSAO}' &")
+        os.system(f"zynaddsubfx -a -L '{ZYN_FOLDER}{choice}{EXTENSAO}' &")
 
     def exit(self,event=None):
         self.root.destroy()
 
-def helm_banks():
+def zyn_banks():
     app = App()
 
 if __name__ == '__main__': # executa se chamado diretamente
-   helm_banks()
+   zyn_banks()

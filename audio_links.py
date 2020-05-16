@@ -37,8 +37,10 @@ class App:
         self.list_box_banks_songs.grid(row=1, column=1, padx=5, pady=2)
 
         self.choices_banks_songs = ['Carla banks',
+                                    'Helm banks',
                                     'Sons - Musescore / Ardour / Mixbus',
-                                    'Sons - Base DB']
+                                    'Sons - Base DB',
+                                    'ZynAddSubFX banks']
 
         for item in sorted(self.choices_banks_songs):
             self.list_box_banks_songs.insert(END, item)
@@ -83,12 +85,20 @@ class App:
             import carla_banks
             print('Executando carla_banks')
             carla_banks.carla_banks()
+        elif choice_b == 'Helm banks':
+            import helm_banks
+            print('Executando helm_banks')
+            helm_banks.helm_banks()
         elif choice_b == 'Sons - Musescore / Ardour / Mixbus':
             import songs
             print('Executando songs')
             songs.songs()
         elif choice_b == 'Sons - Base DB':
             os.system("libreoffice '/mnt/HD Externo/Sons/Sons.odb' &" )
+        elif choice_b == 'ZynAddSubFX banks':
+            import zyn_banks
+            print('Executando zyn_banks')
+            zyn_banks.zyn_banks()
 
 
     def exit(self,event=None):
