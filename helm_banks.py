@@ -6,6 +6,7 @@ import tkinter.ttk as ttk
 import os
 
 HELM_FOLDER = '/mnt/HD Externo/Bancos e Patches/Helm/'
+EXTENSAO = '.helm'
 
 class App:
 
@@ -16,7 +17,7 @@ class App:
 
         # create_widgets:
         '''Cria os Listbox e inclui os itens da lista self.choices...'''
-        self.frame1=Frame(self.root, bg='#2b355a') ##3877ad
+        self.frame1=Frame(self.root, bg='#1b7bcf') ##3877ad
         self.frame1.pack()
 
         # menus
@@ -28,32 +29,17 @@ class App:
         self.root.config(menu=self.menu)
 
         # demais widgets
-        Label(self.frame1, text='Musescore', bg='#2b355a', fg='#c2c2c2', font='Arial 11 bold',
+        Label(self.frame1, text='Helm', bg='#1b7bcf', fg='black', font='Arial 11 bold',
               pady=3).grid(row=0, column=0)
-        self.list_muse = Listbox(self.frame1, width=85, height=18, bg='#31363b', fg='#eff0f1',
+        self.list_helm = Listbox(self.frame1, width=85, height=18, bg='#31363b', fg='#eff0f1',
                                  highlightbackground='#125487', selectbackground='#125487',
                                  selectforeground='orange')
-        self.list_muse.grid(row=1, column=0, padx=7)
-        self.list_muse.bind("<Double-Button-1>", self.choice_select_muse)  # com um Enter chama a rotina correspondente.
-        self.list_muse.bind("<Return>", self.choice_select_muse)  # com um Enter chama a rotina correspondente.
-        self.list_muse.bind('<Escape>', self.exit)  # com um Esc encera o programa
-        Button(self.frame1, text='Run', command=self.choice_select_muse).grid(row=2, column=0)
+        self.list_helm.grid(row=1, column=0, padx=7)
+        self.list_helm.bind("<Double-Button-1>", self.choice_select_helm)  # com um Enter chama a rotina correspondente.
+        self.list_helm.bind("<Return>", self.choice_select_helm)  # com um Enter chama a rotina correspondente.
+        self.list_helm.bind('<Escape>', self.exit)  # com um Esc encera o programa
+        Button(self.frame1, text='Run', command=self.choice_select_helm).grid(row=2, column=0)
         ttk.Separator(self.frame1, orient=HORIZONTAL).grid(row=3, column=0, columnspan=2, sticky='we')
-
-        self.frame2=Frame(self.root, bg='#3d3d3d')
-        self.frame2.pack()
-        Label(self.frame2, text='Ardour / Mixbus', bg='#3d3d3d', fg='#c2c2c2', font='Arial 11 bold',
-              pady=3).grid(row=0, column=0, columnspan=2)
-        self.list_ard_mix = Listbox(self.frame2, width=85, height=18, bg='#31363b', fg='#eff0f1',
-                                 highlightbackground='#125487', selectbackground='#125487',
-                                 selectforeground='orange')
-        self.list_ard_mix.grid(row=1, column=0, columnspan=2, padx=7)
-        self.list_ard_mix.bind("<Double-Button-1>", self.choice_select_mixbus)  # com um Enter chama a rotina correspondente.
-        self.list_ard_mix.bind("<Return>", self.choice_select_mixbus)  # com um Enter chama a rotina correspondente.
-        self.list_ard_mix.bind('<Escape>', self.exit)  # com um Esc encera o programa
-        Button(self.frame2, text='Run Ardour', command=self.choice_select_ardour).grid(row=2, column=0)
-        Button(self.frame2, text='Run Mixbus', command=self.choice_select_mixbus).grid(row=2, column=1)
-        ttk.Separator(self.frame2, orient=HORIZONTAL).grid(row=3, column=0, columnspan=2, sticky='we')
 
         self.atualiza_listas()
 
@@ -66,7 +52,7 @@ class App:
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
         largura = 700
-        altura = 850
+        altura = 425
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
         altura_screen = self.root.winfo_screenheight()
@@ -84,47 +70,21 @@ class App:
         carla_banks.carla_banks()
 
     def atualiza_listas(self):
-        list_m=[]
-        for foldername, subfolders, filenames in os.walk(MUSESCORE_FOLDER):
+        list=[]
+        for foldername, subfolders, filenames in os.walk(HELM_FOLDER):
             for filename in filenames:
-                if filename.endswith('.mscz'):
-                    list_m.append(os.path.join(foldername[len(MUSESCORE_FOLDER):], filename[:-5])) #Nome sem extensão e caminho
-        list_m = sorted(list_m)
+                if filename.endswith(EXTENSAO):
+                    list.append(os.path.join(foldername[len(HELM_FOLDER):], filename[:-5])) #Nome sem extensão e caminho
+        list_m = sorted(list)
         for item in list_m:
-            self.list_muse.insert(END, item)
+            self.list_helm.insert(END, item)
 
-        list_ar_mix=[]
-        for foldername, subfolders, filenames in os.walk(ARDOUR_FOLDER):
-            for filename in filenames:
-                if filename.endswith('.ardour'):
-                    list_ar_mix.append(os.path.join(foldername[len(ARDOUR_FOLDER):], filename[:-7]))
-        list_ar_mix = sorted(list_ar_mix)
-        for item in list_ar_mix:
-            self.list_ard_mix.insert(END, item)
-
-    def choice_select_muse(self, event=None):
+    def choice_select_helm(self, event=None):
         '''Recupera o item selecionado no Listbox e chama o método chama_rotina()'''
-        choice_muse = self.list_muse.get(ACTIVE)
-        print(f'Executando musescore {choice_muse}')
+        choice = self.list_helm.get(ACTIVE)
+        print(f'Executando Helm {choice}')
         # self.root.destroy()
-        os.system(f"env BAMF_DESKTOP_FILE_HINT="
-                  f"/var/lib/snapd/desktop/applications/musescore_musescore.desktop "
-                  f"/snap/bin/musescore.mscore '{MUSESCORE_FOLDER}{choice_muse}.mscz' &")
-
-    def choice_select_ardour(self, event=None):
-        '''Recupera o item selecionado no Listbox e chama o método chama_rotina()'''
-        choice_ard = self.list_ard_mix.get(ACTIVE)
-        print(f'Executando ardour {choice_ard}')
-        # self.root.destroy()
-        os.system(f"ardour '{ARDOUR_FOLDER}{choice_ard}.ardour' &")
-
-    def choice_select_mixbus(self, event=None):
-        '''Recupera o item selecionado no Listbox e chama o método'''
-        choice_mix = self.list_ard_mix.get(ACTIVE)
-        print(f'Executando mixbus {choice_mix}')
-        # self.root.destroy()
-        os.system(f"Mixbus5 '{ARDOUR_FOLDER}{choice_mix}.ardour' &")
-
+        os.system(f"Helm '{HELM_FOLDER}{choice}{EXTENSAO}' &")
 
     def exit(self,event=None):
         self.root.destroy()
