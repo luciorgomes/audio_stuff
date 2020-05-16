@@ -40,6 +40,7 @@ class App:
                                     'Helm banks',
                                     'Sons - Musescore / Ardour / Mixbus',
                                     'Sons - Base DB',
+                                    'Rakarrack banks',
                                     'ZynAddSubFX banks']
 
         for item in sorted(self.choices_banks_songs):
@@ -95,6 +96,10 @@ class App:
             songs.songs()
         elif choice_b == 'Sons - Base DB':
             os.system("libreoffice '/mnt/HD Externo/Sons/Sons.odb' &" )
+        elif choice_b == 'Rakarrack banks':
+            import raka_banks
+            print('Rakarrack banks')
+            raka_banks.raka_banks()
         elif choice_b == 'ZynAddSubFX banks':
             import zyn_banks
             print('Executando zyn_banks')
