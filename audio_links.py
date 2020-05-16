@@ -2,9 +2,10 @@
 # audio_links.py - relação de rotinas
 
 from tkinter import *
+import tkinter.font as ft
 import os
 from dict import apps_dict
-# from dict import banks_songs
+from dict import wine_dict
 
 class App:
     def __init__(self):
@@ -15,10 +16,13 @@ class App:
         # primeira lista
         self.frame = Frame(self.root, bg='#2b4970', width=90)
         self.frame.pack()
+
+        list_font = ft.Font(family='Noto Sans', size=10, weight=ft.NORMAL)
+        list_style = {'width': 29, 'height': 21, 'bg': '#31363b', 'fg': '#eff0f1', 'highlightbackground': '#125487',
+                      'selectbackground': '#125487', 'selectforeground':'orange', 'font':list_font}
+
         Label(self.frame, text='Apps', font='Ubuntu 11 bold', bg='#2b4970').grid(row=0, column=0)
-        self.list_box_apps = Listbox(self.frame, width=29, height=20, bg='#31363b', fg='#eff0f1',
-                                highlightbackground='#125487', selectbackground='#125487',
-                                selectforeground='orange')
+        self.list_box_apps = Listbox(self.frame, list_style)
         self.list_box_apps.grid(row=1, column=0, padx=5, pady=2)
 
         for key in sorted(apps_dict.keys()): # carrega a lista com as chaves do dicionário
@@ -30,11 +34,23 @@ class App:
         self.list_box_apps.bind('<Escape>', self.exit)  # com um Esc encera o programa
 
         # segunda lista
-        Label(self.frame, text='Banks / Songs', font='Ubuntu 11 bold', bg='#2b4970').grid(row=0, column=1)
-        self.list_box_banks_songs = Listbox(self.frame, width=29, height=20, bg='#31363b', fg='#eff0f1',
-                                 highlightbackground='#125487', selectbackground='#125487',
-                                 selectforeground='orange')
-        self.list_box_banks_songs.grid(row=1, column=1, padx=5, pady=2)
+        Label(self.frame, text='Wine', font='Ubuntu 11 bold', bg='#2b4970').grid(row=0, column=1)
+        self.list_box_wine = Listbox(self.frame, list_style)
+        self.list_box_wine.grid(row=1, column=1, padx=5, pady=2)
+
+        for item in sorted(wine_dict.keys()):
+             self.list_box_wine.insert(END, item)
+
+        Button(self.frame, text='Run', command=self.choice_select_wine).grid(row=2, column=1, pady=3)
+        self.list_box_wine.bind("<Double-Button-1>", self.choice_select_wine)  # com um duplo clique chama a rotina correspondente.
+        self.list_box_wine.bind("<Return>", self.choice_select_wine)  # com um Enter chama a rotina correspondente.
+        self.list_box_wine.bind('<Escape>', self.exit)  # com um Esc encera o programa
+
+
+        #terceira lista
+        Label(self.frame, text='Banks / Songs', font='Ubuntu 11 bold', bg='#2b4970').grid(row=0, column=2)
+        self.list_box_banks_songs = Listbox(self.frame, list_style)
+        self.list_box_banks_songs.grid(row=1, column=2, padx=5, pady=2)
 
         self.choices_banks_songs = ['Carla banks',
                                     'Helm banks',
@@ -46,7 +62,7 @@ class App:
         for item in sorted(self.choices_banks_songs):
             self.list_box_banks_songs.insert(END, item)
 
-        Button(self.frame, text='Run', command=self.choice_select_banks_songs).grid(row=2, column=1, pady=3)
+        Button(self.frame, text='Run', command=self.choice_select_banks_songs).grid(row=2, column=2, pady=3)
         self.list_box_banks_songs.bind("<Double-Button-1>", self.choice_select_banks_songs)  # com um duplo clique chama a rotina correspondente.
         self.list_box_banks_songs.bind("<Return>", self.choice_select_banks_songs)  # com um Enter chama a rotina correspondente.
         self.list_box_banks_songs.bind('<Escape>', self.exit)  # com um Esc encera o programa
@@ -61,8 +77,8 @@ class App:
         self.root.resizable(False, False)
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
-        largura = 492
-        altura = 468
+        largura = 740
+        altura = 488
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
         altura_screen = self.root.winfo_screenheight()
@@ -77,6 +93,14 @@ class App:
         #self.root.destroy()
         print(choice)
         os.system(apps_dict[choice] + ' &') # recupera o comando do dicionário
+
+    def choice_select_wine(self, event=None):
+        '''Recupera o item selecionado no Listbox e chama o aplicativo'''
+        choice = self.list_box_wine.get(ACTIVE)
+        #self.root.destroy()
+        print(choice)
+        os.system("wine '" + wine_dict[choice] + "' &") # recupera o comando do dicionário
+
 
     def choice_select_banks_songs(self, event=None):
         '''Recupera o item selecionado no Listbox e chama o banco ou música'''

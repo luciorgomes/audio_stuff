@@ -47,8 +47,10 @@ apps_dict={
     'Seq24': 'seq24',
     'Sequencer24': 'qseq24',
     'SetBfree': 'setBfreeUI',
+    'SpectMorph': 'smjack',
     'Synthv1': 'synthv1_jack',
     'TerminatorX': 'terminatorX',
+    'Waveform11': 'Waveform11',
     'Wolf-Spectrum': 'wolf-spectrum',
     'x42 Dynamic Compressor': 'x42-darc',
     'x42 Digital Peak Limiter Stereo': 'x42-dpl',
@@ -81,7 +83,53 @@ apps_dict={
     'ZamVerb': 'ZamVerb',
     'Zita-Bls1': 'zita-bls1',
     'Zita-Dpl1': 'zita-dpl1',
-    'Zynaddbubfx': 'zynaddbubfx',
+    'Zynaddbubfx': 'zynaddsubfx',
+}
+
+wine_dict = {
+    'Addictive Drums 2':
+        '/home/lucio/.wine/drive_c/Program Files (x86)/XLN Audio/Addictive Drums 2/Addictive Drums 2.exe',
+    'Amplitube 3': '/home/lucio/.wine/drive_c/Program Files (x86)/IK Multimedia/AmpliTube 3/Amplitube 3.exe',
+    'Amplitube 4': '/home/lucio/.wine/drive_c/Program Files/IK Multimedia/AmpliTube 4/Amplitube 4.exe',
+    'Analog Lab 3': '/home/lucio/.wine/drive_c/Program Files (x86)/Arturia/Analog Lab 3/Analog Lab 3.exe',
+    'Amplifikation Caliburn': '/home/lucio/.wine/drive_c/Program Files/Kuassa/AmplifikationCaliburn.exe',
+    'Amplifikation Creme': '/home/lucio/.wine/drive_c/Program Files/Kuassa/AmplifikationCreme.exe',
+    'Amplifikation Matchlock': '/home/lucio/.wine/drive_c/Program Files/Kuassa/AmplifikationMatchlock.exe',
+    'Amplifikation Vermilion': '/home/lucio/.wine/drive_c/Program Files/Kuassa/AmplifikationVermilion.exe',
+    'Battery 3': '/home/lucio/.wine/drive_c/Program Files/Native Instruments/Battery 3/Battery 3.exe',
+    'Battery 4': '/home/lucio/.wine/drive_c/Program Files/Native Instruments/Battery 4/Battery 4.exe',
+    'Cerberus Bass Amp': '/home/lucio/.wine/drive_c/Program Files/Kuassa/CerberusBassAmp.exe',
+    'Elastik': '/home/lucio/.wine/drive_c/Program Files/Elastik 3/Elastik 3.exe',
+    'EZdrummer': '/home/lucio/.wine/drive_c/Program Files/Toontrack/EZdrummer/EZdrummer64.exe',
+    'FM8': '/home/lucio/.wine/drive_c/Program Files/Native Instruments/FM8/FM8.exe',
+    'Guitar Rig 5': '/home/lucio/.wine/drive_c/Program Files/Native Instruments/Guitar Rig 5/Guitar Rig 5.exe',
+    'Independence': '/home/lucio/.wine/drive_c/Program Files (x86)/MAGIX/Independence/Independence64.exe',
+    'Kontakt 6':
+        '/home/lucio/.wine/drive_c/Program Files/Native Instruments/Kontakt 6 Portable/Kontakt/x64/Kontakt.exe',
+    'Korg Legacy M1 Le':'/home/lucio/.wine/drive_c/Program Files (x86)/KORG/KORG Legacy/M1 Le.exe',
+    'Korg Kontrol Editor':
+        '/home/lucio/.wine/drive_c/Program Files (x86)/KORG/KORG KONTROL Editor/KorgKontrolEditor.exe',
+    'Lounge Lizard 3':
+        '/home/lucio/.wine/drive_c/Program Files (x86)/AAS/Lounge Lizard 3.0/Bin/LoungeLizard3.exe',
+    'Lounge Lizard EP-4':
+        '/home/lucio/.wine/drive_c/Program Files (x86)/Applied Acoustics Systems/Lounge Lizard EP-4/bin64/Lounge Lizard EP-4.exe',
+    'Lounge Lizard Session 4':
+        '/home/lucio/.wine/drive_c/Program Files (x86)/Applied Acoustics Systems/Lounge Lizard Session 4/bin64/Lounge Lizard Session 4.exe',
+    'MIDIGuitar2': '/home/lucio/.wine/drive_c/Program Files/Jam Origin/MIDI Guitar 2/MIDIGuitar2-64bit.exe',
+    'Modo Bass': '/home/lucio/.wine/drive_c/Program Files/IK Multimedia/MODO BASS/MODO BASS.exe',
+    'Pianoteq 2.2': '/home/lucio/.wine/drive_c/Program Files (x86)/Pianoteq 2.2/Pianoteq22.exe',
+    'Pianoteq 6 STAGE': '/home/lucio/.wine/drive_c/Program Files/Modartt/Pianoteq 6 STAGE/Pianoteq 6 STAGE.exe',
+    'SampleTank 2.5': '/home/lucio/.wine/drive_c/Program Files (x86)/IK Multimedia/SampleTank 2.5/SampleTank 2.5.exe',
+    'SampleTank 3': '/home/lucio/.wine/drive_c/Program Files/IK Multimedia/SampleTank 3/SampleTank 3.exe',
+    'SampleTank 4': '/home/lucio/.wine/drive_c/Program Files/IK Multimedia/SampleTank 4/SampleTank 4.exe',
+    'Sforzando': '/home/lucio/.wine/drive_c/Program Files/Plogue/sforzando/sforzando.exe',
+    'Syntronik': '/home/lucio/.wine/drive_c/Program Files/IK Multimedia/Syntronik/Syntronik.exe',
+    'Strum Session 2':
+        '/home/lucio/.wine/drive_c/Program Files (x86)/Applied Acoustics Systems/Strum Session 2/bin64/Strum Session 2.exe',
+    'TH-U': '/home/lucio/.wine/drive_c/Program Files/Overloud/TH-U/TH-U.exe',
+    'Ultra Analog Session 2':
+        '/home/lucio/.wine/drive_c/Program Files (x86)/Applied Acoustics Systems/Ultra Analog Session 2/bin64/Ultra Analog Session 2.exe',
+    'Vstomp': '/home/lucio/.wine/drive_c/Program Files/Hotone/VStompAmp/VStompAmp.exe'
 }
 
 banks_songs = {'Carla banks':{'import_file': 'carla_banks', 'exec': 'carla_banks.carla_banks()'},
