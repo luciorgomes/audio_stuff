@@ -31,7 +31,7 @@ class App:
         # demais widgets
         Label(self.frame1, text='ZynAddSubFX', bg='#00818e', fg='black', font='Arial 11 bold',
               pady=3).grid(row=0, column=0)
-        self.list_zyn = Listbox(self.frame1, width=85, height=18, bg='#31363b', fg='#eff0f1',
+        self.list_zyn = Listbox(self.frame1,  width=85, height=18, bg='#31363b', fg='#eff0f1',
                                 highlightbackground='#125487', selectbackground='#125487',
                                 selectforeground='orange')
         self.list_zyn.grid(row=1, column=0, padx=7)
