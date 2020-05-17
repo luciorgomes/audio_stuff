@@ -2,7 +2,7 @@
 # carla_banks.py - Bancos do Carla
 
 from tkinter import *
-import tkinter.font as ft
+# import tkinter.font as ft
 import tkinter.ttk as ttk
 import os
 
@@ -31,9 +31,9 @@ class App:
         self.frame1.pack()
         Label(self.frame1, text='Amps', bg='#3e0000', fg='#c2c2c2', font='Arial 11 bold', pady=3).pack()
 
-        list_font = ft.Font(family='Noto Sans', size=10, weight=ft.NORMAL)
+        # list_font = ft.Font(family='Noto Sans', size=10, weight=ft.NORMAL)
         list_style = {'width': 75, 'height': 11, 'bg': '#31363b', 'fg': '#eff0f1', 'highlightbackground': '#125487',
-                      'selectbackground': '#125487', 'selectforeground':'orange', 'font':list_font}
+                      'selectbackground': '#125487', 'selectforeground':'orange'}
 
         self.list_amps = Listbox(self.frame1, list_style)
         self.list_amps.pack(padx=7)

@@ -46,7 +46,7 @@ class App:
 
     def define_raiz(self):
         '''Define caracterísicas da janela'''
-        self.root.title('Sons')
+        self.root.title('Banks')
         self.root.resizable(False, False)
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela

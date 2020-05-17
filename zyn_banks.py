@@ -15,7 +15,7 @@ class App:
         self.root = Tk()
         '''Instancia o Frame com o Listbox com a relação de aplicativos'''
         self.define_raiz()
-
+        self.recupera_nome_keyboard()
         # create_widgets:
         '''Cria os Listbox e inclui os itens da lista self.choices...'''
         self.frame1=Frame(self.root, bg='#00818e') ##3877ad
@@ -47,7 +47,7 @@ class App:
 
     def define_raiz(self):
         '''Define caracterísicas da janela'''
-        self.root.title('Sons')
+        self.root.title('Banks')
         self.root.resizable(False, False)
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
@@ -75,6 +75,14 @@ class App:
         for item in list_m:
             self.list_zyn.insert(END, item)
 
+    def recupera_nome_keyboard(self):
+        os.system("jack_lsp >> lsp") # lê as portas do jack
+        with open('lsp', 'r') as ports:
+            lsp_ports = ports.read().split('\n') # gera uma lista
+            sub = '(capture): Keystation 49e MIDI 1' # final do nome da porta
+            self.port = next((s for s in lsp_ports if sub in s), None) # localiza o item na lista
+            os.unlink('lsp') # deleta o arquivo temporário
+
     def choice_select(self, event=None):
         '''Recupera o item selecionado no Listbox e chama o método chama_rotina()'''
         choice = self.list_zyn.get(ACTIVE)
@@ -82,7 +90,7 @@ class App:
         # self.root.destroy()
         os.system(f"zynaddsubfx -a -L '{ZYN_FOLDER}{choice}{EXTENSAO}' &")
         time.sleep(1)
-        os.system("jack_connect 'a2j:Keystation 49e [16] (capture): Keystation 49e MIDI 1' 'zynaddsubfx:midi_input' &")
+        os.system(f"jack_connect '{self.port}' 'zynaddsubfx:midi_input' &")
 
     def exit(self,event=None):
         self.root.destroy()
