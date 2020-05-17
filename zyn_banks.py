@@ -76,7 +76,7 @@ class App:
             self.list_zyn.insert(END, item)
 
     def recupera_nome_keyboard(self):
-        os.system("jack_lsp >> lsp") # lê as portas do jack
+        os.system("jack_lsp >> lsp") # lê as portas do jack e grava em um arquivo temporário
         with open('lsp', 'r') as ports:
             lsp_ports = ports.read().split('\n') # gera uma lista
             sub = '(capture): Keystation 49e MIDI 1' # final do nome da porta
