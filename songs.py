@@ -2,6 +2,7 @@
 # songs.py - Bancos do Carla
 
 from tkinter import *
+import tkinter.font as ft
 import tkinter.ttk as ttk
 import os
 
@@ -31,9 +32,12 @@ class App:
         # demais widgets
         Label(self.frame1, text='Musescore', bg='#2b355a', fg='#c2c2c2', font='Arial 11 bold',
               pady=3).grid(row=0, column=0)
-        self.list_muse = Listbox(self.frame1, width=85, height=18, bg='#31363b', fg='#eff0f1',
-                                 highlightbackground='#125487', selectbackground='#125487',
-                                 selectforeground='orange')
+
+        list_font = ft.Font(family='Noto Sans', size=10, weight=ft.NORMAL)
+        list_style = {'width': 85, 'height': 18, 'bg': '#31363b', 'fg': '#eff0f1', 'highlightbackground': '#125487',
+                      'selectbackground': '#125487', 'selectforeground':'orange', 'font':list_font}
+
+        self.list_muse = Listbox(self.frame1, list_style)
         self.list_muse.grid(row=1, column=0, padx=7)
         self.list_muse.bind("<Double-Button-1>", self.choice_select_muse)  # com um Enter chama a rotina correspondente.
         self.list_muse.bind("<Return>", self.choice_select_muse)  # com um Enter chama a rotina correspondente.
@@ -45,9 +49,7 @@ class App:
         self.frame2.pack()
         Label(self.frame2, text='Ardour / Mixbus', bg='#3d3d3d', fg='#c2c2c2', font='Arial 11 bold',
               pady=3).grid(row=0, column=0, columnspan=2)
-        self.list_ard_mix = Listbox(self.frame2, width=85, height=18, bg='#31363b', fg='#eff0f1',
-                                 highlightbackground='#125487', selectbackground='#125487',
-                                 selectforeground='orange')
+        self.list_ard_mix = Listbox(self.frame2, list_style)
         self.list_ard_mix.grid(row=1, column=0, columnspan=2, padx=7)
         self.list_ard_mix.bind("<Double-Button-1>", self.choice_select_mixbus)  # com um Enter chama a rotina correspondente.
         self.list_ard_mix.bind("<Return>", self.choice_select_mixbus)  # com um Enter chama a rotina correspondente.

@@ -2,6 +2,7 @@
 # carla_banks.py - Bancos do Carla
 
 from tkinter import *
+import tkinter.font as ft
 import tkinter.ttk as ttk
 import os
 
@@ -29,9 +30,12 @@ class App:
         self.frame1=Frame(self.root, bg='#3e0000') ##3877ad
         self.frame1.pack()
         Label(self.frame1, text='Amps', bg='#3e0000', fg='#c2c2c2', font='Arial 11 bold', pady=3).pack()
-        self.list_amps = Listbox(self.frame1, width=75, height=11, bg='#31363b', fg='#eff0f1',
-                                 highlightbackground='#125487', selectbackground='#125487',
-                                 selectforeground='orange')
+
+        list_font = ft.Font(family='Noto Sans', size=10, weight=ft.NORMAL)
+        list_style = {'width': 75, 'height': 11, 'bg': '#31363b', 'fg': '#eff0f1', 'highlightbackground': '#125487',
+                      'selectbackground': '#125487', 'selectforeground':'orange', 'font':list_font}
+
+        self.list_amps = Listbox(self.frame1, list_style)
         self.list_amps.pack(padx=7)
         self.list_amps.bind("<Double-Button-1>", self.choice_select_amp)  # com um Enter chama a rotina correspo
         self.list_amps.bind("<Return>", self.choice_select_amp)  # com um Enter chama a rotina correspondente.
@@ -42,9 +46,7 @@ class App:
         self.frame2=Frame(self.root, bg='#002839')
         self.frame2.pack()
         Label(self.frame2, text='Synth', bg='#002839', fg='#c2c2c2', font='Arial 11 bold', pady=3).pack()
-        self.list_synth = Listbox(self.frame2, width=75, height=11, bg='#31363b', fg='#eff0f1',
-                                 highlightbackground='#125487', selectbackground='#125487',
-                                 selectforeground='orange')
+        self.list_synth = Listbox(self.frame2, list_style)
         self.list_synth.pack(padx=7)
         self.list_synth.bind("<Double-Button-1>", self.choice_select_synth)  # com um Enter chama a rotina correspondente.
         self.list_synth.bind("<Return>", self.choice_select_synth)  # com um Enter chama a rotina correspondente.
@@ -55,9 +57,7 @@ class App:
         self.frame3=Frame(self.root, bg='#202d39')
         self.frame3.pack()
         Label(self.frame3, text='Todos', bg='#202d39', fg='#c2c2c2', font='Arial 11 bold', pady=3).pack()
-        self.list_outros = Listbox(self.frame3, width=75, height=14, bg='#31363b', fg='#eff0f1',
-                                 highlightbackground='#125487', selectbackground='#125487',
-                                 selectforeground='orange')
+        self.list_outros = Listbox(self.frame3, list_style)
         self.list_outros.pack(padx=7)
         self.list_outros.bind("<Double-Button-1>", self.choice_select_outros)  # com um Enter chama a rotina correspondente.
         self.list_outros.bind("<Return>", self.choice_select_outros)  # com um Enter chama a rotina correspondente.
@@ -79,7 +79,7 @@ class App:
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
         largura = 620
-        altura = 926
+        altura = 867
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
         altura_screen = self.root.winfo_screenheight()
