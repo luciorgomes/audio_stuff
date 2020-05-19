@@ -17,9 +17,9 @@ class App:
         self.frame = Frame(self.root, bg='#2b4970', width=90)
         self.frame.pack()
 
-        list_font = ft.Font(family='Noto Sans', size=10, weight=ft.NORMAL)
+        # list_font = ft.Font(family='Noto Sans', size=10, weight=ft.NORMAL)
         list_style = {'width': 29, 'height': 21, 'bg': '#31363b', 'fg': '#eff0f1', 'highlightbackground': '#125487',
-                      'selectbackground': '#125487', 'selectforeground':'orange', 'font':list_font}
+                      'selectbackground': '#125487', 'selectforeground':'orange'}
 
         Label(self.frame, text='Apps', font='Ubuntu 11 bold', bg='#2b4970').grid(row=0, column=0)
         self.list_box_apps = Listbox(self.frame, list_style)

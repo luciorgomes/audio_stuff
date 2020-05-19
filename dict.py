@@ -114,7 +114,7 @@ wine_dict = {
     'Lounge Lizard EP-4':
         '/home/lucio/.wine/drive_c/Program Files (x86)/Applied Acoustics Systems/Lounge Lizard EP-4/bin64/Lounge Lizard EP-4.exe',
     'Lounge Lizard Session 4':
-        '/home/lucio/.wine/drive_c/Program Files (x86)/Applied Acoustics Systems/Lounge Lizard Session 4/bin64/Lounge Lizard Session 4.exe',
+        '/home/lucio/.wine/drive_c/Program Files (x86)/Applied Acoustics Systems/Lounge Lizard Session 4/bin32/Lounge Lizard Session 4.exe',
     'MIDIGuitar2': '/home/lucio/.wine/drive_c/Program Files/Jam Origin/MIDI Guitar 2/MIDIGuitar2-64bit.exe',
     'Modo Bass': '/home/lucio/.wine/drive_c/Program Files/IK Multimedia/MODO BASS/MODO BASS.exe',
     'Pianoteq 2.2': '/home/lucio/.wine/drive_c/Program Files (x86)/Pianoteq 2.2/Pianoteq22.exe',
@@ -128,7 +128,7 @@ wine_dict = {
         '/home/lucio/.wine/drive_c/Program Files (x86)/Applied Acoustics Systems/Strum Session 2/bin64/Strum Session 2.exe',
     'TH-U': '/home/lucio/.wine/drive_c/Program Files/Overloud/TH-U/TH-U.exe',
     'Ultra Analog Session 2':
-        '/home/lucio/.wine/drive_c/Program Files (x86)/Applied Acoustics Systems/Ultra Analog Session 2/bin64/Ultra Analog Session 2.exe',
+        '/home/lucio/.wine/drive_c/Program Files (x86)/Applied Acoustics Systems/Ultra Analog Session 2/bin32/Ultra Analog Session 2.exe',
     'Vstomp': '/home/lucio/.wine/drive_c/Program Files/Hotone/VStompAmp/VStompAmp.exe'
 }
 

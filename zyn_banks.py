@@ -80,7 +80,7 @@ class App:
         with open('lsp', 'r') as ports:
             lsp_ports = ports.read().split('\n') # gera uma lista
             sub = '(capture): Keystation 49e MIDI 1' # final do nome da porta
-            self.port = next((s for s in lsp_ports if sub in s), None) # localiza o item na lista
+            self.midi_port = next((s for s in lsp_ports if sub in s), None) # localiza o item na lista
             os.unlink('lsp') # deleta o arquivo temporário
 
     def choice_select(self, event=None):
@@ -90,7 +90,7 @@ class App:
         # self.root.destroy()
         os.system(f"zynaddsubfx -a -L '{ZYN_FOLDER}{choice}{EXTENSAO}' &")
         time.sleep(1)
-        os.system(f"jack_connect '{self.port}' 'zynaddsubfx:midi_input' &")
+        os.system(f"jack_connect '{self.midi_port}' 'zynaddsubfx:midi_input' &")
 
     def exit(self,event=None):
         self.root.destroy()
