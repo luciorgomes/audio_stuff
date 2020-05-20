@@ -46,9 +46,13 @@ class App:
         self.frame2=Frame(self.root, bg='#002839')
         self.frame2.pack()
         Label(self.frame2, text='Synth', bg='#002839', fg='#c2c2c2', font='Arial 11 bold', pady=3).pack()
-        self.dir_synth_combo = ttk.Combobox(self.frame2, justify=CENTER)
+
+        # ttk.Style().layout('combo.TCombobox')
+        # ttk.Style().configure('combo.TCombobox', selectforeground='black', selectbackground='gray', background='#002839', foreground='black')
+        self.dir_synth_combo = ttk.Combobox(self.frame2, justify=CENTER, state='readonly')
         self.dir_synth_combo.pack()
         self.dir_synth_combo.bind('<<ComboboxSelected>>', self.atualiza_synth_list)
+
         self.list_synth = Listbox(self.frame2, list_style)
         self.list_synth.pack(padx=7)
         self.list_synth.bind("<Double-Button-1>", self.choice_select_synth)  # com um Enter chama a rotina correspondente.
