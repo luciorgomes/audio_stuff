@@ -136,3 +136,4 @@ banks_songs = {'Carla banks':{'import_file': 'carla_banks', 'exec': 'carla_banks
                 'Sons - Musescore / Ardour / Mixbus':{'import_file': 'songs', 'exec': 'songs.songs()'},
                 'Sons - Base DB':{'import_file': None, 'exec': "libreoffice '/mnt/HD Externo/Sons/Sons.odb'"}
 }
+

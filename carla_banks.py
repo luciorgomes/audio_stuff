@@ -46,6 +46,9 @@ class App:
         self.frame2=Frame(self.root, bg='#002839')
         self.frame2.pack()
         Label(self.frame2, text='Synth', bg='#002839', fg='#c2c2c2', font='Arial 11 bold', pady=3).pack()
+        self.dir_synth_combo = ttk.Combobox(self.frame2, justify=CENTER)
+        self.dir_synth_combo.pack()
+        self.dir_synth_combo.bind('<<ComboboxSelected>>', self.atualiza_synth_list)
         self.list_synth = Listbox(self.frame2, list_style)
         self.list_synth.pack(padx=7)
         self.list_synth.bind("<Double-Button-1>", self.choice_select_synth)  # com um Enter chama a rotina correspondente.
@@ -79,7 +82,7 @@ class App:
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
         largura = 620
-        altura = 867
+        altura = 890
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
         altura_screen = self.root.winfo_screenheight()
@@ -100,49 +103,77 @@ class App:
         list_carla_amp=[]
         for foldername, subfolders, filenames in os.walk(CARLA_AMP_FOLDER):
             for filename in filenames:
-                if filename.endswith('.carxp'):
+                if filename.endswith('.carxp') or filename.endswith('.carxs'):
                     list_carla_amp.append(os.path.join(foldername[len(CARLA_AMP_FOLDER):], filename[:-6]))
         list_carla_amp = sorted(list_carla_amp)
         for item in list_carla_amp:
             self.list_amps.insert(END, item)
-        list_carla_syn=[]
+        list_combo, list_carla_syn = [], []
         for foldername, subfolders, filenames in os.walk(CARLA_SYNTH_FOLDER):
+            list_combo.append(foldername[len(CARLA_SYNTH_FOLDER):])
             for filename in filenames:
-                if filename.endswith('.carxp'):
+                if filename.endswith('.carxp') or filename.endswith('.carxs'):
                     list_carla_syn.append(os.path.join(foldername[len(CARLA_SYNTH_FOLDER):], filename[:-6]))
         list_carla_syn = sorted(list_carla_syn)
         for item in list_carla_syn:
             self.list_synth.insert(END, item)
-
+        self.dir_synth_combo['values'] = sorted(list_combo)
         list_carla=[]
         for foldername, subfolders, filenames in os.walk(CARLA_FOLDER):
             for filename in filenames:
-                if filename.endswith('.carxp'):
+                if filename.endswith('.carxp') or filename.endswith('.carxs'):
                     list_carla.append(os.path.join(foldername[len(CARLA_FOLDER):], filename[:-6]))
         list_carla = sorted(list_carla)
         for item in list_carla:
             self.list_outros.insert(END, item)
+
+    def atualiza_synth_list(self, event=None): # atualiza a lista pelo combobox
+        list_synth = []
+        self.instr_folder = self.dir_synth_combo.get()
+        self.list_synth.delete(0, END)
+        for foldername, subfolders, filenames in os.walk(CARLA_SYNTH_FOLDER + self.instr_folder):
+            for filename in filenames:
+                if filename.endswith('.carxp') or filename.endswith('.carxs'):
+                    list_synth.append(os.path.join(foldername[len(CARLA_SYNTH_FOLDER + self.instr_folder):], filename[:-6]))
+        list_synth = sorted(list_synth)
+        for item in list_synth:
+            self.list_synth.insert(END, item)
 
     def choice_select_amp(self, event=None):
         '''Recupera o item selecionado no Listbox e chama o método chama_rotina()'''
         choice_amp = self.list_amps.get(ACTIVE)
         print(f'Executando carla {choice_amp}')
         # self.root.destroy()
-        os.system(f"carla '{CARLA_AMP_FOLDER}{choice_amp}.carxp' &")
+        if os.path.exists(f'{CARLA_AMP_FOLDER}{choice_amp}.carxp'):
+            os.system(f"carla '{CARLA_AMP_FOLDER}{choice_amp}.carxp' &")
+        else:
+            os.system(f"carla '{CARLA_AMP_FOLDER}{choice_amp}.carxs' &")
 
     def choice_select_synth(self, event=None):
         '''Recupera o item selecionado no Listbox e chama o método chama_rotina()'''
         choice_syn = self.list_synth.get(ACTIVE)
         print(f'Executando carla {choice_syn}')
         # self.root.destroy()
-        os.system(f"carla '{CARLA_SYNTH_FOLDER}{choice_syn}.carxp' &")
+        if self.dir_synth_combo.get(): # se selecionado item do combobox
+            if os.path.exists(f'{CARLA_SYNTH_FOLDER}{self.dir_synth_combo.get()}/{choice_syn}.carxp'):
+                os.system(f"carla '{CARLA_SYNTH_FOLDER}{self.dir_synth_combo.get()}/{choice_syn}.carxp' &")
+            else:
+                os.system(f"carla '{CARLA_SYNTH_FOLDER}{self.dir_synth_combo.get()}/{choice_syn}.carxs' &")
+        else:
+            if os.path.exists(f'{CARLA_SYNTH_FOLDER}{choice_syn}.carxp'):
+                os.system(f"carla '{CARLA_SYNTH_FOLDER}{choice_syn}.carxp' &")
+            else:
+                os.system(f"carla '{CARLA_SYNTH_FOLDER}{choice_syn}.carxs' &")
 
     def choice_select_outros(self, event=None):
         '''Recupera o item selecionado no Listbox e chama o método'''
         choice = self.list_outros.get(ACTIVE)
         print(f'Executando carla {choice}')
         # self.root.destroy()
-        os.system(f"carla '{CARLA_FOLDER}{choice}.carxp' &")
+        if os.path.exists(f'{CARLA_FOLDER}{choice}.carxp'):
+            os.system(f"carla '{CARLA_FOLDER}{choice}.carxp' &")
+        else:
+            os.system(f"carla '{CARLA_FOLDER}{choice}.carxs' &")
 
 
     def exit(self,event=None):
