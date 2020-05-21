@@ -47,9 +47,10 @@ class App:
         self.frame2.pack()
         Label(self.frame2, text='Synth', bg='#002839', fg='#c2c2c2', font='Arial 11 bold', pady=3).pack()
 
-        # ttk.Style().layout('combo.TCombobox')
-        # ttk.Style().configure('combo.TCombobox', selectforeground='black', selectbackground='gray', background='#002839', foreground='black')
-        self.dir_synth_combo = ttk.Combobox(self.frame2, justify=CENTER, state='readonly')
+        style_combo = ttk.Style()
+        style_combo.configure('combo.TCombobox', selectforeground='orange', selectbackground='#125487', background='#002839',
+                              foreground='black')
+        self.dir_synth_combo = ttk.Combobox(self.frame2, justify=CENTER, state='readonly', style='combo.TCombobox')
         self.dir_synth_combo.pack()
         self.dir_synth_combo.bind('<<ComboboxSelected>>', self.atualiza_synth_list)
 
