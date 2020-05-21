@@ -31,15 +31,21 @@ class App:
         # demais widgets
         Label(self.frame1, text='ZynAddSubFX', bg='#00818e', fg='black', font='Arial 11 bold',
               pady=3).grid(row=0, column=0)
+        style_combo = ttk.Style()
+        style_combo.configure('combo.TCombobox', selectforeground='orange', selectbackground='#125487',
+                              background='#002839', foreground='black')
+        self.dir_combo = ttk.Combobox(self.frame1, justify=CENTER, state='readonly', style='combo.TCombobox', width=30)
+        self.dir_combo.grid(row=1, column=0)
+        self.dir_combo.bind('<<ComboboxSelected>>', self.atualiza_listas_combo)
         self.list_zyn = Listbox(self.frame1,  width=85, height=18, bg='#31363b', fg='#eff0f1',
                                 highlightbackground='#125487', selectbackground='#125487',
                                 selectforeground='orange')
-        self.list_zyn.grid(row=1, column=0, padx=7)
+        self.list_zyn.grid(row=2, column=0, padx=7)
         self.list_zyn.bind("<Double-Button-1>", self.choice_select)  # com um Enter chama a rotina correspondente.
         self.list_zyn.bind("<Return>", self.choice_select)  # com um Enter chama a rotina correspondente.
         self.list_zyn.bind('<Escape>', self.exit)  # com um Esc encera o programa
-        Button(self.frame1, text='Run', command=self.choice_select).grid(row=2, column=0)
-        ttk.Separator(self.frame1, orient=HORIZONTAL).grid(row=3, column=0, columnspan=2, sticky='we')
+        Button(self.frame1, text='Run', command=self.choice_select).grid(row=3, column=0)
+        ttk.Separator(self.frame1, orient=HORIZONTAL).grid(row=4, column=0, columnspan=2, sticky='we')
 
         self.atualiza_listas()
 
@@ -52,7 +58,7 @@ class App:
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
         largura = 700
-        altura = 425
+        altura = 450
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
         altura_screen = self.root.winfo_screenheight()
@@ -66,13 +72,27 @@ class App:
         audio_links.audio_links()
 
     def atualiza_listas(self):
-        list=[]
+        list, list_dirs = [], []
         for foldername, subfolders, filenames in os.walk(ZYN_FOLDER):
+            list_dirs.append(foldername[len(ZYN_FOLDER):])
             for filename in filenames:
                 if filename.endswith(EXTENSAO):
                     list.append(os.path.join(foldername[len(ZYN_FOLDER):], filename[:-4])) #Nome sem extensão e caminho
         list_m = sorted(list)
         for item in list_m:
+            self.list_zyn.insert(END, item)
+        self.dir_combo['values'] = sorted(list_dirs)
+
+    def atualiza_listas_combo(self, event=None): # atualiza a lista pelo combobox
+        list_combo = []
+        self.instr_folder = self.dir_combo.get()
+        self.list_zyn.delete(0, END)
+        for foldername, subfolders, filenames in os.walk(ZYN_FOLDER + self.instr_folder):
+            for filename in filenames:
+                if filename.endswith(EXTENSAO):
+                    list_combo.append(os.path.join(foldername[len(ZYN_FOLDER + self.instr_folder):], filename[:-4]))
+        list_combo = sorted(list_combo)
+        for item in list_combo:
             self.list_zyn.insert(END, item)
 
     def recupera_nome_keyboard(self):
@@ -87,8 +107,11 @@ class App:
         '''Recupera o item selecionado no Listbox e chama o método chama_rotina()'''
         choice = self.list_zyn.get(ACTIVE)
         print(f'Executando zynaddsubfx {choice}')
-        # self.root.destroy()
-        os.system(f"zynaddsubfx -a -L '{ZYN_FOLDER}{choice}{EXTENSAO}' &")
+        if self.dir_combo.get():  # se selecionado item do combobox
+            os.system(f"zynaddsubfx -a -L '{ZYN_FOLDER}{self.dir_combo.get()}/{choice}{EXTENSAO}' &")
+            print(f"zynaddsubfx -a -L '{ZYN_FOLDER}{self.dir_combo.get()}/{choice}{EXTENSAO}' &")
+        else:
+            os.system(f"zynaddsubfx -a -L '{ZYN_FOLDER}{choice}{EXTENSAO}' &")
         time.sleep(1)
         os.system(f"jack_connect '{self.midi_port}' 'zynaddsubfx:midi_input' &")
 
