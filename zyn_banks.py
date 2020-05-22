@@ -34,7 +34,7 @@ class App:
         style_combo = ttk.Style()
         style_combo.configure('combo.TCombobox', selectforeground='orange', selectbackground='#125487',
                               background='#002839', foreground='black')
-        self.dir_combo = ttk.Combobox(self.frame1, justify=CENTER, state='readonly', style='combo.TCombobox', width=30)
+        self.dir_combo = ttk.Combobox(self.frame1, justify=CENTER, state='readonly', style='combo.TCombobox', width=45)
         self.dir_combo.grid(row=1, column=0)
         self.dir_combo.bind('<<ComboboxSelected>>', self.atualiza_listas_combo)
         self.list_zyn = Listbox(self.frame1,  width=85, height=18, bg='#31363b', fg='#eff0f1',
