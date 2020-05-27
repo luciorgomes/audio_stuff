@@ -51,6 +51,7 @@ apps_dict={
     'SpectMorph': 'smjack',
     'Synthv1': 'synthv1_jack',
     'TerminatorX': 'terminatorX',
+    'Tuner':'/home/lucio/bin/tuner',
     'Waveform11': 'Waveform11',
     'Wolf-Spectrum': 'wolf-spectrum',
     'x42 Dynamic Compressor': 'x42-darc',
