@@ -65,6 +65,7 @@ class App:
 
         self.choices_banks_songs = ['Carla banks',
                                     'Helm banks',
+                                    'LV2 plugins',
                                     'Sons - Musescore / Ardour / Mixbus',
                                     'Sons - Base DB',
                                     'Rakarrack banks',
@@ -132,6 +133,10 @@ class App:
             import helm_banks
             print('Executando helm_banks')
             helm_banks.helm_banks()
+        elif choice_b == 'LV2 plugins':
+            import lv2_plugins
+            print('Executando lv2_plugins')
+            lv2_plugins.lv2_plugins()
         elif choice_b == 'Sons - Musescore / Ardour / Mixbus':
             import songs
             print('Executando songs')

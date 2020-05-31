@@ -59,7 +59,7 @@ class App:
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
         largura = 700
-        altura = 450
+        altura = 425
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
         altura_screen = self.root.winfo_screenheight()
