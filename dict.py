@@ -4,7 +4,7 @@ apps_dict={
     'Ams': 'ams',
     'Amsynth': 'amsynth',
     'Ardour': 'ardour',
-    'Ardour6':'/home/lucio/Build/Ardour-6.0.0/gtk2_ardour/ardev',
+    'Ardour6':'/home/lucio/Build/Ardour-6.2.0/gtk2_ardour/ardev',
     'Arpage': 'arpage',
     'Cadence Logs': 'cadence-logs',
     'Cadence Jack Meter': 'cadence-jackmeter',

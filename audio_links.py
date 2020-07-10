@@ -63,15 +63,15 @@ class App:
         self.list_box_banks_songs = Listbox(self.frame, list_style)
         self.list_box_banks_songs.grid(row=1, column=2, padx=5, pady=2)
 
-        self.choices_banks_songs = ['Carla banks',
+        self.choices_banks_songs = ['Sons',
+                                    'Sons - Base DB',
+                                    'Carla banks',
                                     'Helm banks',
                                     'LV2 plugins',
-                                    'Sons - Musescore / Ardour / Mixbus',
-                                    'Sons - Base DB',
                                     'Rakarrack banks',
                                     'ZynAddSubFX banks']
 
-        for item in sorted(self.choices_banks_songs):
+        for item in self.choices_banks_songs:
             self.list_box_banks_songs.insert(END, item)
 
         Button(self.frame, text='Run', command=self.choice_select_banks_songs).grid(
@@ -137,7 +137,7 @@ class App:
             import lv2_plugins
             print('Executando lv2_plugins')
             lv2_plugins.lv2_plugins()
-        elif choice_b == 'Sons - Musescore / Ardour / Mixbus':
+        elif choice_b == 'Sons':
             import songs
             print('Executando songs')
             songs.songs()
