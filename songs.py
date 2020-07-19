@@ -35,43 +35,52 @@ class App:
 
         # demais widgets
         Label(self.frame1, text='Musescore', bg='#2b355a', fg='#c2c2c2', font='Arial 11 bold',
-              pady=3).grid(row=0, column=0)
+              pady=3).grid(row=0, column=0, columnspan=2)
 
         # list_font = ft.Font(family='Noto Sans', size=10, weight=ft.NORMAL)
         list_style = {'width': 85, 'height': 18, 'bg': '#31363b', 'fg': '#eff0f1', 'highlightbackground': '#125487',
                       'selectbackground': '#125487', 'selectforeground': 'orange'}
 
         self.list_muse = Listbox(self.frame1, list_style)
-        self.list_muse.grid(row=1, column=0, padx=7)
+        self.list_muse.grid(row=1, column=0, padx=(7,0))
         # com um Enter chama a rotina correspondente.
         self.list_muse.bind("<Double-Button-1>", self.choice_select_muse)
         # com um Enter chama a rotina correspondente.
         self.list_muse.bind("<Return>", self.choice_select_muse)
         # com um Esc encera o programa
         self.list_muse.bind('<Escape>', self.exit)
+        self.scrollbar_muse = Scrollbar(self.frame1, relief=FLAT, bg='#2b355a', width=12, troughcolor='#2b355a')
+        self.scrollbar_muse.grid(row=1, column=1, sticky=W+E+N+S, padx=(0, 7))
+        self.list_muse.config(yscrollcommand=self.scrollbar_muse.set)
+        self.scrollbar_muse.config(command=self.list_muse.yview)
         Button(self.frame1, text='Run',
-               command=self.choice_select_muse).grid(row=2, column=0)
-        ttk.Separator(self.frame1, orient=HORIZONTAL).grid(
-            row=3, column=0, columnspan=2, sticky='we')
+               command=self.choice_select_muse).grid(row=2, column=0, columnspan=2)
+        ttk.Separator(self.root, orient=HORIZONTAL).pack(fill=BOTH, pady=(3,0))
 
         self.frame2 = Frame(self.root, bg='#3d3d3d')
         self.frame2.pack()
         Label(self.frame2, text='Ardour / Mixbus', bg='#3d3d3d', fg='#c2c2c2', font='Arial 11 bold',
-              pady=3).grid(row=0, column=0, columnspan=2)
+              pady=3).grid(row=0, column=0, columnspan=2, pady=(3,0))
         self.list_ard_mix = Listbox(self.frame2, list_style)
-        self.list_ard_mix.grid(row=1, column=0, columnspan=2, padx=7)
+        self.list_ard_mix.grid(row=1, column=0, padx=(7, 0))
         # com um Enter chama a rotina correspondente.
         self.list_ard_mix.bind("<Double-Button-1>", self.choice_select_mixbus)
         # com um Enter chama a rotina correspondente.
         self.list_ard_mix.bind("<Return>", self.choice_select_mixbus)
         # com um Esc encera o programa
         self.list_ard_mix.bind('<Escape>', self.exit)
-        Button(self.frame2, text='Run Ardour',
-               command=self.choice_select_ardour).grid(row=2, column=0)
-        Button(self.frame2, text='Run Mixbus',
-               command=self.choice_select_mixbus).grid(row=2, column=1)
-        ttk.Separator(self.frame2, orient=HORIZONTAL).grid(
-            row=3, column=0, columnspan=2, sticky='we')
+        self.scrollbar_ard_mix = Scrollbar(self.frame2, relief=FLAT, bg='#3d3d3d', width=12, troughcolor='#3d3d3d')
+        self.scrollbar_ard_mix.grid(row=1, column=1, sticky=W + E + N + S, padx=(0, 7))
+        self.list_ard_mix.config(yscrollcommand=self.scrollbar_ard_mix.set)
+        self.scrollbar_ard_mix.config(command=self.list_ard_mix.yview)
+        self.frame3 = Frame(self.root, bg='#3d3d3d')
+        self.frame3.pack(fill=BOTH, expand=1)
+        Button(self.frame3, text='Run Ardour',
+               command=self.choice_select_ardour).grid(row=0, column=0, sticky=E, padx=129)
+        Button(self.frame3, text='Run Mixbus',
+               command=self.choice_select_mixbus).grid(row=0, column=1, sticky=W, padx=129)
+        ttk.Separator(self.frame3, orient=HORIZONTAL).grid(
+            row=3, column=0, columnspan=2, sticky='we', pady=(3,0))
 
         self.atualiza_listas()
 
@@ -83,8 +92,8 @@ class App:
         self.root.resizable(False, False)
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
-        largura = 700
-        altura = 850
+        largura = 715
+        altura = 860
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
         altura_screen = self.root.winfo_screenheight()
@@ -145,7 +154,7 @@ class App:
         choice_mix = self.list_ard_mix.get(ACTIVE)
         print(f'Executando mixbus {choice_mix}')
         # self.root.destroy()
-        os.system(f"Mixbus5 '{ARDOUR_FOLDER}{choice_mix}.ardour' &")
+        os.system(f"Mixbus6 '{ARDOUR_FOLDER}{choice_mix}.ardour' &")
 
     def exit(self, event=None):
         self.root.destroy()
