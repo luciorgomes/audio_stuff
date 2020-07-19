@@ -21,15 +21,14 @@ class App:
         # list_font = ft.Font(family='Noto Sans', size=10, weight=ft.NORMAL)
         list_style = {'width': 29, 'height': 21, 'bg': '#31363b', 'fg': '#eff0f1', 'highlightbackground': '#125487',
                       'selectbackground': '#125487', 'selectforeground': 'orange'}
-
-        Label(self.frame, text='Apps', font='Ubuntu 11 bold',
-              bg='#2b4970').grid(row=0, column=0)
         self.frame_amps = Frame(self.frame, bg='#2b4970')
-        self.frame_amps.grid(row=1, column=0)
+        self.frame_amps.grid(row=0, column=0)
+        Label(self.frame_amps, text='Apps', font='Ubuntu 11 bold',
+              bg='#2b4970').grid(row=0, column=0)
         self.list_box_apps = Listbox(self.frame_amps, list_style)
-        self.list_box_apps.grid(row=0, column=0, padx=(5,0), pady=2)
+        self.list_box_apps.grid(row=1, column=0, padx=(5,0), pady=2)
         self.scrollbar_apps = Scrollbar(self.frame_amps, relief=FLAT, bg='#2b4970', width=12, troughcolor='#2b4970')
-        self.scrollbar_apps.grid(row=0, column=1, sticky=W + E + N + S)
+        self.scrollbar_apps.grid(row=1, column=1, sticky=W + E + N + S)
         self.list_box_apps.config(yscrollcommand=self.scrollbar_apps.set)
         self.scrollbar_apps.config(command=self.list_box_apps.yview)
 
@@ -38,7 +37,7 @@ class App:
             self.list_box_apps.insert(END, key)
 
         Button(self.frame_amps, text='Run', command=self.choice_select_apps).grid(
-            row=1, column=0, pady=3, columnspan=2)
+            row=2, column=0, pady=3)
         # com um duplo clique chama a rotina correspondente.
         self.list_box_apps.bind("<Double-Button-1>", self.choice_select_apps)
         # com um Enter chama a rotina correspondente.
@@ -47,14 +46,14 @@ class App:
         self.list_box_apps.bind('<Escape>', self.exit)
 
         # segunda lista
-        Label(self.frame, text='Wine', font='Ubuntu 11 bold',
-              bg='#2b4970').grid(row=0, column=1)
         self.frame_wine = Frame(self.frame, bg='#2b4970')
-        self.frame_wine.grid(row=1, column=1)
+        self.frame_wine.grid(row=0, column=1)
+        Label(self.frame_wine, text='Wine', font='Ubuntu 11 bold',
+              bg='#2b4970').grid(row=0, column=0)
         self.list_box_wine = Listbox(self.frame_wine, list_style)
-        self.list_box_wine.grid(row=0, column=0, padx=(5,0), pady=2)
+        self.list_box_wine.grid(row=1, column=0, padx=(5,0), pady=2)
         self.scrollbar_wine = Scrollbar(self.frame_wine, relief=FLAT, bg='#2b4970', width=12, troughcolor='#2b4970')
-        self.scrollbar_wine.grid(row=0, column=1, sticky=W + E + N + S)
+        self.scrollbar_wine.grid(row=1, column=1, sticky=W + E + N + S)
         self.list_box_wine.config(yscrollcommand=self.scrollbar_wine.set)
         self.scrollbar_wine.config(command=self.list_box_wine.yview)
 
@@ -62,7 +61,7 @@ class App:
             self.list_box_wine.insert(END, item)
 
         Button(self.frame_wine, text='Run', command=self.choice_select_wine).grid(
-            row=1, column=0, pady=3, columnspan=2)
+            row=2, column=0, pady=3)
         # com um duplo clique chama a rotina correspondente.
         self.list_box_wine.bind("<Double-Button-1>", self.choice_select_wine)
         # com um Enter chama a rotina correspondente.
@@ -71,14 +70,14 @@ class App:
         self.list_box_wine.bind('<Escape>', self.exit)
 
         # terceira lista
-        Label(self.frame, text='Banks / Songs', font='Ubuntu 11 bold',
-              bg='#2b4970').grid(row=0, column=2)
         self.frame_songs = Frame(self.frame, bg='#2b4970')
-        self.frame_songs.grid(row=1, column=2)
+        self.frame_songs.grid(row=0, column=2)
+        Label(self.frame_songs, text='Banks / Songs', font='Ubuntu 11 bold',
+              bg='#2b4970').grid(row=0, column=0)
         self.list_box_banks_songs = Listbox(self.frame_songs, list_style)
-        self.list_box_banks_songs.grid(row=0, column=0, padx=(5,0), pady=2)
+        self.list_box_banks_songs.grid(row=1, column=0, padx=(5,0), pady=2)
         self.scrollbar_songs = Scrollbar(self.frame_songs, relief=FLAT, bg='#2b4970', width=12, troughcolor='#2b4970')
-        self.scrollbar_songs.grid(row=0, column=1, sticky=W + E + N + S, padx=(0,3))
+        self.scrollbar_songs.grid(row=1, column=1, sticky=W + E + N + S, padx=(0,3))
         self.list_box_banks_songs.config(yscrollcommand=self.scrollbar_songs.set)
         self.scrollbar_songs.config(command=self.list_box_banks_songs.yview)
 
@@ -94,7 +93,7 @@ class App:
             self.list_box_banks_songs.insert(END, item)
 
         Button(self.frame_songs, text='Run', command=self.choice_select_banks_songs).grid(
-            row=1, column=0, pady=3, columnspan=2)
+            row=2, column=0, pady=3)
         # com um duplo clique chama a rotina correspondente.
         self.list_box_banks_songs.bind(
             "<Double-Button-1>", self.choice_select_banks_songs)
@@ -111,7 +110,7 @@ class App:
     def define_raiz(self):
         '''Define caracterísicas da janela'''
         self.root.title('Audio Links')
-        #self.root.resizable(False, False)
+        self.root.resizable(False, False)
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
         largura = 770
