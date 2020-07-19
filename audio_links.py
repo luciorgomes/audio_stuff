@@ -24,15 +24,21 @@ class App:
 
         Label(self.frame, text='Apps', font='Ubuntu 11 bold',
               bg='#2b4970').grid(row=0, column=0)
-        self.list_box_apps = Listbox(self.frame, list_style)
-        self.list_box_apps.grid(row=1, column=0, padx=5, pady=2)
+        self.frame_amps = Frame(self.frame, bg='#2b4970')
+        self.frame_amps.grid(row=1, column=0)
+        self.list_box_apps = Listbox(self.frame_amps, list_style)
+        self.list_box_apps.grid(row=0, column=0, padx=(5,0), pady=2)
+        self.scrollbar_apps = Scrollbar(self.frame_amps, relief=FLAT, bg='#2b4970', width=12, troughcolor='#2b4970')
+        self.scrollbar_apps.grid(row=0, column=1, sticky=W + E + N + S)
+        self.list_box_apps.config(yscrollcommand=self.scrollbar_apps.set)
+        self.scrollbar_apps.config(command=self.list_box_apps.yview)
 
         # carrega a lista com as chaves do dicionário
         for key in sorted(apps_dict.keys()):
             self.list_box_apps.insert(END, key)
 
-        Button(self.frame, text='Run', command=self.choice_select_apps).grid(
-            row=2, column=0, pady=3)
+        Button(self.frame_amps, text='Run', command=self.choice_select_apps).grid(
+            row=1, column=0, pady=3, columnspan=2)
         # com um duplo clique chama a rotina correspondente.
         self.list_box_apps.bind("<Double-Button-1>", self.choice_select_apps)
         # com um Enter chama a rotina correspondente.
@@ -43,25 +49,38 @@ class App:
         # segunda lista
         Label(self.frame, text='Wine', font='Ubuntu 11 bold',
               bg='#2b4970').grid(row=0, column=1)
-        self.list_box_wine = Listbox(self.frame, list_style)
-        self.list_box_wine.grid(row=1, column=1, padx=5, pady=2)
+        self.frame_wine = Frame(self.frame, bg='#2b4970')
+        self.frame_wine.grid(row=1, column=1)
+        self.list_box_wine = Listbox(self.frame_wine, list_style)
+        self.list_box_wine.grid(row=0, column=0, padx=(5,0), pady=2)
+        self.scrollbar_wine = Scrollbar(self.frame_wine, relief=FLAT, bg='#2b4970', width=12, troughcolor='#2b4970')
+        self.scrollbar_wine.grid(row=0, column=1, sticky=W + E + N + S)
+        self.list_box_wine.config(yscrollcommand=self.scrollbar_wine.set)
+        self.scrollbar_wine.config(command=self.list_box_wine.yview)
 
         for item in sorted(wine_dict.keys()):
             self.list_box_wine.insert(END, item)
 
-        Button(self.frame, text='Run', command=self.choice_select_wine).grid(
-            row=2, column=1, pady=3)
+        Button(self.frame_wine, text='Run', command=self.choice_select_wine).grid(
+            row=1, column=0, pady=3, columnspan=2)
         # com um duplo clique chama a rotina correspondente.
         self.list_box_wine.bind("<Double-Button-1>", self.choice_select_wine)
         # com um Enter chama a rotina correspondente.
         self.list_box_wine.bind("<Return>", self.choice_select_wine)
         # com um Esc encera o programa
         self.list_box_wine.bind('<Escape>', self.exit)
+
         # terceira lista
         Label(self.frame, text='Banks / Songs', font='Ubuntu 11 bold',
               bg='#2b4970').grid(row=0, column=2)
-        self.list_box_banks_songs = Listbox(self.frame, list_style)
-        self.list_box_banks_songs.grid(row=1, column=2, padx=5, pady=2)
+        self.frame_songs = Frame(self.frame, bg='#2b4970')
+        self.frame_songs.grid(row=1, column=2)
+        self.list_box_banks_songs = Listbox(self.frame_songs, list_style)
+        self.list_box_banks_songs.grid(row=0, column=0, padx=(5,0), pady=2)
+        self.scrollbar_songs = Scrollbar(self.frame_songs, relief=FLAT, bg='#2b4970', width=12, troughcolor='#2b4970')
+        self.scrollbar_songs.grid(row=0, column=1, sticky=W + E + N + S, padx=(0,3))
+        self.list_box_banks_songs.config(yscrollcommand=self.scrollbar_songs.set)
+        self.scrollbar_songs.config(command=self.list_box_banks_songs.yview)
 
         self.choices_banks_songs = ['Sons',
                                     'Sons - Base DB',
@@ -74,8 +93,8 @@ class App:
         for item in self.choices_banks_songs:
             self.list_box_banks_songs.insert(END, item)
 
-        Button(self.frame, text='Run', command=self.choice_select_banks_songs).grid(
-            row=2, column=2, pady=3)
+        Button(self.frame_songs, text='Run', command=self.choice_select_banks_songs).grid(
+            row=1, column=0, pady=3, columnspan=2)
         # com um duplo clique chama a rotina correspondente.
         self.list_box_banks_songs.bind(
             "<Double-Button-1>", self.choice_select_banks_songs)
@@ -92,10 +111,10 @@ class App:
     def define_raiz(self):
         '''Define caracterísicas da janela'''
         self.root.title('Audio Links')
-        self.root.resizable(False, False)
+        #self.root.resizable(False, False)
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
-        largura = 740
+        largura = 770
         altura = 488
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
