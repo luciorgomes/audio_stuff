@@ -31,20 +31,26 @@ class App:
         self.root.config(menu=self.menu)
 
         # demais widgets
-        Label(self.frame1, text='Rakarrack', bg='gray', fg='black', font='Arial 11 bold',
+        self.frame_raka = Frame(self.root, bg='gray')
+        self.frame_raka.pack()
+        Label(self.frame_raka, text='Rakarrack', bg='gray', fg='black', font='Arial 11 bold',
               pady=3).grid(row=0, column=0)
-        self.list = Listbox(self.frame1, width=85, height=18, bg='#31363b', fg='#eff0f1',
+        self.list = Listbox(self.frame_raka, width=85, height=18, bg='#31363b', fg='#eff0f1',
                             highlightbackground='#125487', selectbackground='#125487',
                             selectforeground='orange')
-        self.list.grid(row=1, column=0, padx=7)
+        self.list.grid(row=1, column=0, padx=(7,0))
         # com um Enter chama a rotina correspondente.
         self.list.bind("<Double-Button-1>", self.choice_select)
         # com um Enter chama a rotina correspondente.
         self.list.bind("<Return>", self.choice_select)
         self.list.bind('<Escape>', self.exit)  # com um Esc encera o programa
-        Button(self.frame1, text='Run',
+        self.scrollbar = Scrollbar(self.frame_raka, relief=FLAT, bg='gray', width=12, troughcolor='gray')
+        self.scrollbar.grid(row=1, column=1, sticky=W + E + N + S, padx=(0, 7))
+        self.list.config(yscrollcommand=self.scrollbar.set)
+        self.scrollbar.config(command=self.list.yview)
+        Button(self.frame_raka, text='Run',
                command=self.choice_select).grid(row=2, column=0)
-        ttk.Separator(self.frame1, orient=HORIZONTAL).grid(
+        ttk.Separator(self.frame_raka, orient=HORIZONTAL).grid(
             row=3, column=0, columnspan=2, sticky='we')
 
         self.atualiza_listas()
@@ -57,8 +63,8 @@ class App:
         self.root.resizable(False, False)
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
-        largura = 700
-        altura = 425
+        largura = 710
+        altura = 426
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
         altura_screen = self.root.winfo_screenheight()

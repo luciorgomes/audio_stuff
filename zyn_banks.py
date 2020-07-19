@@ -32,28 +32,34 @@ class App:
         self.root.config(menu=self.menu)
 
         # demais widgets
-        Label(self.frame1, text='ZynAddSubFX', bg='#00818e', fg='black', font='Arial 11 bold',
+        self.frame_zyn = Frame(self.root, bg='#00818e')
+        self.frame_zyn.pack()
+        Label(self.frame_zyn, text='ZynAddSubFX', bg='#00818e', fg='black', font='Arial 11 bold',
               pady=3).grid(row=0, column=0)
         style_combo = ttk.Style()
         style_combo.configure('combo.TCombobox', selectforeground='orange', selectbackground='#125487',
                               background='#002839', foreground='black')
         self.dir_combo = ttk.Combobox(
-            self.frame1, justify=CENTER, state='readonly', style='combo.TCombobox', width=45)
+            self.frame_zyn, justify=CENTER, state='readonly', style='combo.TCombobox', width=45)
         self.dir_combo.grid(row=1, column=0)
         self.dir_combo.bind('<<ComboboxSelected>>', self.atualiza_listas_combo)
-        self.list_zyn = Listbox(self.frame1,  width=85, height=18, bg='#31363b', fg='#eff0f1',
+        self.list_zyn = Listbox(self.frame_zyn,  width=85, height=18, bg='#31363b', fg='#eff0f1',
                                 highlightbackground='#125487', selectbackground='#125487',
                                 selectforeground='orange')
-        self.list_zyn.grid(row=2, column=0, padx=7)
+        self.list_zyn.grid(row=2, column=0, padx=(7,0))
         # com um Enter chama a rotina correspondente.
         self.list_zyn.bind("<Double-Button-1>", self.choice_select)
         # com um Enter chama a rotina correspondente.
         self.list_zyn.bind("<Return>", self.choice_select)
         # com um Esc encera o programa
         self.list_zyn.bind('<Escape>', self.exit)
-        Button(self.frame1, text='Run',
+        self.scrollbar = Scrollbar(self.frame_zyn, relief=FLAT, bg='#00818e', width=12, troughcolor='#00818e')
+        self.scrollbar.grid(row=2, column=1, sticky=W + E + N + S, padx=(0, 7))
+        self.list_zyn.config(yscrollcommand=self.scrollbar.set)
+        self.scrollbar.config(command=self.list_zyn.yview)
+        Button(self.frame_zyn, text='Run',
                command=self.choice_select).grid(row=3, column=0)
-        ttk.Separator(self.frame1, orient=HORIZONTAL).grid(
+        ttk.Separator(self.frame_zyn, orient=HORIZONTAL).grid(
             row=4, column=0, columnspan=2, sticky='we')
 
         self.atualiza_listas()
@@ -66,7 +72,7 @@ class App:
         self.root.resizable(False, False)
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
-        largura = 700
+        largura = 710
         altura = 450
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()

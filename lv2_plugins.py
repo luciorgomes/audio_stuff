@@ -30,23 +30,29 @@ class App:
         self.root.config(menu=self.menu)
 
         # demais widgets
-        Label(self.frame1, text='Lv2', bg='#ca7d64', fg='black', font='Arial 11 bold',
+        self.frame_lv2 = Frame(self.root, bg='#ca7d64')
+        self.frame_lv2.pack()
+        Label(self.frame_lv2, text='Lv2', bg='#ca7d64', fg='black', font='Arial 11 bold',
               pady=3).grid(row=0, column=0)
 
-        self.list_lv2 = Listbox(self.frame1,  width=85, height=18, bg='#31363b', fg='#eff0f1',
+        self.list_lv2 = Listbox(self.frame_lv2,  width=85, height=18, bg='#31363b', fg='#eff0f1',
                                 highlightbackground='#125487', selectbackground='#125487',
                                 selectforeground='orange')
-        self.list_lv2.grid(row=2, column=0, padx=7)
+        self.list_lv2.grid(row=1, column=0, padx=(7,0))
         # com um Enter chama a rotina correspondente.
         self.list_lv2.bind("<Double-Button-1>", self.choice_select)
         # com um Enter chama a rotina correspondente.
         self.list_lv2.bind("<Return>", self.choice_select)
         # com um Esc encera o programa
         self.list_lv2.bind('<Escape>', self.exit)
-        Button(self.frame1, text='Run',
-               command=self.choice_select).grid(row=3, column=0)
-        ttk.Separator(self.frame1, orient=HORIZONTAL).grid(
-            row=4, column=0, columnspan=2, sticky='we')
+        self.scrollbar = Scrollbar(self.frame_lv2, relief=FLAT, bg='#ca7d64', width=12, troughcolor='#ca7d64')
+        self.scrollbar.grid(row=1, column=1, sticky=W + E + N + S, padx=(0, 7))
+        self.list_lv2.config(yscrollcommand=self.scrollbar.set)
+        self.scrollbar.config(command=self.list_lv2.yview)
+        Button(self.frame_lv2, text='Run',
+               command=self.choice_select).grid(row=2, column=0)
+        ttk.Separator(self.frame_lv2, orient=HORIZONTAL).grid(
+            row=3, column=0, columnspan=2, sticky='we')
 
         self.atualiza_listas()
 
@@ -58,7 +64,7 @@ class App:
         self.root.resizable(False, False)
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
-        largura = 700
+        largura = 710
         altura = 425
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
