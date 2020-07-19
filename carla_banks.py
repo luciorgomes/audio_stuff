@@ -32,27 +32,34 @@ class App:
         # create_widgets:
         '''Cria os Listbox e inclui os itens da lista self.choices...'''
         self.frame1 = Frame(self.root, bg='#3e0000')  # 3877ad
-        self.frame1.pack()
+        self.frame1.pack(fill=BOTH)
         Label(self.frame1, text='Amps', bg='#3e0000',
-              fg='#c2c2c2', font='Arial 11 bold', pady=3).pack()
+              fg='#c2c2c2', font='Arial 11 bold', pady=3).pack(fill=BOTH, pady=(3,0))
 
         # list_font = ft.Font(family='Noto Sans', size=10, weight=ft.NORMAL)
         list_style = {'width': 75, 'height': 11, 'bg': '#31363b', 'fg': '#eff0f1', 'highlightbackground': '#125487',
                       'selectbackground': '#125487', 'selectforeground': 'orange'}
-
-        self.list_amps = Listbox(self.frame1, list_style)
-        self.list_amps.pack(padx=7)
+        self.frame_amps = Frame(self.root, bg='#3e0000')
+        self.frame_amps.pack()
+        self.list_amps = Listbox(self.frame_amps, list_style)
+        self.list_amps.grid(row=1, column=0, padx=(7,0))
         # com um Enter chama a rotina correspo
         self.list_amps.bind("<Double-Button-1>", self.choice_select_amp)
         # com um Enter chama a rotina correspondente.
         self.list_amps.bind("<Return>", self.choice_select_amp)
         # com um Esc encera o programa
         self.list_amps.bind('<Escape>', self.exit)
-        Button(self.frame1, text='Run', command=self.choice_select_amp).pack()
-        ttk.Separator(self.frame1, orient=HORIZONTAL).pack(pady=2, fill='x')
+        self.scrollbar_list_amps = Scrollbar(self.frame_amps, relief=FLAT, bg='#3e0000', width=12, troughcolor='#3e0000')
+        self.scrollbar_list_amps.grid(row=1, column=1, sticky=W+E+N+S, padx=(0, 7))
+        self.list_amps.config(yscrollcommand=self.scrollbar_list_amps.set)
+        self.scrollbar_list_amps.config(command=self.list_amps.yview)
+        self.frame_button_amp = Frame(self.root, bg='#3e0000')  # 3877ad
+        self.frame_button_amp.pack(fill=BOTH)
+        Button(self.frame_button_amp, text='Run', command=self.choice_select_amp).pack()
+        ttk.Separator(self.frame_button_amp, orient=HORIZONTAL).pack(pady=2, fill='x')
 
         self.frame2 = Frame(self.root, bg='#002839')
-        self.frame2.pack()
+        self.frame2.pack(fill=BOTH)
         Label(self.frame2, text='Synth', bg='#002839',
               fg='#c2c2c2', font='Arial 11 bold', pady=3).pack()
 
@@ -61,35 +68,52 @@ class App:
                               foreground='black')
         self.dir_synth_combo = ttk.Combobox(self.frame2, justify=CENTER, state='readonly',
                                             style='combo.TCombobox', width=30)
-        self.dir_synth_combo.pack()
+        self.dir_synth_combo.pack(pady=3)
         self.dir_synth_combo.bind(
             '<<ComboboxSelected>>', self.atualiza_synth_list)
-
-        self.list_synth = Listbox(self.frame2, list_style)
-        self.list_synth.pack(padx=7)
+        self.frame_synth = Frame(self.root, bg='#002839')
+        self.frame_synth.pack(fill=BOTH)
+        self.list_synth = Listbox(self.frame_synth, list_style)
+        self.list_synth.grid(row=1, column=0, padx=(7,0))
         # com um Enter chama a rotina correspondente.
         self.list_synth.bind("<Double-Button-1>", self.choice_select_synth)
         # com um Enter chama a rotina correspondente.
         self.list_synth.bind("<Return>", self.choice_select_synth)
         # com um Esc encera o programa
         self.list_synth.bind('<Escape>', self.exit)
-        Button(self.frame2, text='Run', command=self.choice_select_synth).pack()
-        ttk.Separator(self.frame2, orient=HORIZONTAL).pack(pady=2, fill='x')
+        self.scrollbar_list_synth = Scrollbar(self.frame_synth, relief=FLAT, bg='#002839', width=12,
+                                             troughcolor='#002839')
+        self.scrollbar_list_synth.grid(row=1, column=1, sticky=W + E + N + S, padx=(0, 7))
+        self.list_synth.config(yscrollcommand=self.scrollbar_list_synth.set)
+        self.scrollbar_list_synth.config(command=self.list_synth.yview)
+        self.frame_button_synth = Frame(self.root, bg='#002839')  # 3877ad
+        self.frame_button_synth.pack(fill=BOTH)
+        Button(self.frame_button_synth, text='Run', command=self.choice_select_synth).pack()
+        ttk.Separator(self.frame_button_synth, orient=HORIZONTAL).pack(pady=2, fill='x')
 
         self.frame3 = Frame(self.root, bg='#202d39')
-        self.frame3.pack()
+        self.frame3.pack(fill=BOTH)
         Label(self.frame3, text='Todos', bg='#202d39',
               fg='#c2c2c2', font='Arial 11 bold', pady=3).pack()
-        self.list_outros = Listbox(self.frame3, list_style)
-        self.list_outros.pack(padx=7)
+        self.frame_outros = Frame(self.root, bg='#202d39')
+        self.frame_outros.pack(fill=BOTH)
+        self.list_outros = Listbox(self.frame_outros, list_style)
+        self.list_outros.grid(row=1, column=0, padx=(7,0))
         # com um Enter chama a rotina correspondente.
         self.list_outros.bind("<Double-Button-1>", self.choice_select_outros)
         # com um Enter chama a rotina correspondente.
         self.list_outros.bind("<Return>", self.choice_select_outros)
         # com um Esc encera o programa
         self.list_outros.bind('<Escape>', self.exit)
-        Button(self.frame3, text='Run', command=self.choice_select_outros).pack()
-        ttk.Separator(self.frame3, orient=HORIZONTAL).pack(pady=2, fill='x')
+        self.scrollbar_list_outros = Scrollbar(self.frame_outros, relief=FLAT, bg='#202d39', width=12,
+                                              troughcolor='#202d39')
+        self.scrollbar_list_outros.grid(row=1, column=1, sticky=W + E + N + S, padx=(0, 7))
+        self.list_outros.config(yscrollcommand=self.scrollbar_list_outros.set)
+        self.scrollbar_list_outros.config(command=self.list_outros.yview)
+        self.frame_button_outros = Frame(self.root, bg='#202d39')  # 3877ad
+        self.frame_button_outros.pack(fill=BOTH)
+        Button(self.frame_button_outros, text='Run', command=self.choice_select_outros).pack()
+        ttk.Separator(self.frame_button_outros, orient=HORIZONTAL).pack(pady=2, fill='x')
         # atualiza list outros
         self.atualiza_listas()
 
@@ -104,8 +128,8 @@ class App:
         self.root.resizable(False, False)
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
-        largura = 620
-        altura = 890
+        largura = 630
+        altura = 898
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
         altura_screen = self.root.winfo_screenheight()
