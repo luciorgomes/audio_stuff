@@ -68,7 +68,7 @@ class App:
                               foreground='black')
         self.dir_synth_combo = ttk.Combobox(self.frame2, justify=CENTER, state='readonly',
                                             style='combo.TCombobox', width=30)
-        self.dir_synth_combo.pack(pady=3)
+        self.dir_synth_combo.pack(pady=(0,3))
         self.dir_synth_combo.bind(
             '<<ComboboxSelected>>', self.atualiza_synth_list)
         self.frame_synth = Frame(self.root, bg='#002839')
