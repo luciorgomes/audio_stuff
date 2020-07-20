@@ -27,6 +27,7 @@ apps_dict={
     'Jamulus':'Jamulus',
     'Lmms': 'lmms',
     'Luppp': 'luppp',
+    'Mamba':'mamba',
     'Meterbridge': 'meterbridge ppm',
     'Mixbus': 'Mixbus6',
     'Muse': 'muse',
