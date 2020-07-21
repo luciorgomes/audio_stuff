@@ -51,7 +51,7 @@ class App:
         Label(self.frame_wine, text='Wine', font='Ubuntu 11 bold',
               bg='#2b4970').grid(row=0, column=0)
         self.list_box_wine = Listbox(self.frame_wine, list_style)
-        self.list_box_wine.grid(row=1, column=0, padx=(5,0), pady=2)
+        self.list_box_wine.grid(row=1, column=0, padx=(5, 0), pady=2)
         self.scrollbar_wine = Scrollbar(self.frame_wine, relief=FLAT, bg='#2b4970', width=12, troughcolor='#2b4970')
         self.scrollbar_wine.grid(row=1, column=1, sticky=W + E + N + S)
         self.list_box_wine.config(yscrollcommand=self.scrollbar_wine.set)
@@ -75,9 +75,9 @@ class App:
         Label(self.frame_songs, text='Banks / Songs', font='Ubuntu 11 bold',
               bg='#2b4970').grid(row=0, column=0)
         self.list_box_banks_songs = Listbox(self.frame_songs, list_style)
-        self.list_box_banks_songs.grid(row=1, column=0, padx=(5,0), pady=2)
+        self.list_box_banks_songs.grid(row=1, column=0, padx=(5, 0), pady=2)
         self.scrollbar_songs = Scrollbar(self.frame_songs, relief=FLAT, bg='#2b4970', width=12, troughcolor='#2b4970')
-        self.scrollbar_songs.grid(row=1, column=1, sticky=W + E + N + S, padx=(0,3))
+        self.scrollbar_songs.grid(row=1, column=1, sticky=W + E + N + S, padx=(0,5))
         self.list_box_banks_songs.config(yscrollcommand=self.scrollbar_songs.set)
         self.scrollbar_songs.config(command=self.list_box_banks_songs.yview)
 
