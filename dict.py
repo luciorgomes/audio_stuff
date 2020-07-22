@@ -12,6 +12,7 @@ apps_dict={
     'Cecilia': 'cecilia',
     'Claudia': 'claudia',
     'Claudia-Launcher': 'claudia-launcher',
+    'CollaB3':'CollaB3',
     'Drumkv1': 'drumkv1_jack',
     'Exadrums': 'exadrums',
     'Geonkick': 'geonkick',
