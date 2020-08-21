@@ -83,6 +83,7 @@ class App:
 
         self.choices_banks_songs = ['Sons',
                                     'Sons - Base DB',
+                                    'Modos - Calc',
                                     'Carla banks',
                                     'Helm banks',
                                     'LV2 plugins',
@@ -161,6 +162,8 @@ class App:
             songs.songs()
         elif choice_b == 'Sons - Base DB':
             os.system("libreoffice '/mnt/HD Externo/Sons/Sons.odb' &")
+        elif choice_b == 'Modos - Calc':
+            os.system("libreoffice '/mnt/HD Externo/home/Documentos/Modos.ods' &")
         elif choice_b == 'Rakarrack banks':
             import raka_banks
             print('Rakarrack banks')

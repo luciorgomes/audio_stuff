@@ -140,6 +140,7 @@ wine_dict = {
 
 banks_songs = {'Carla banks':{'import_file': 'carla_banks', 'exec': 'carla_banks.carla_banks()'},
                 'Sons - Musescore / Ardour / Mixbus':{'import_file': 'songs', 'exec': 'songs.songs()'},
-                'Sons - Base DB':{'import_file': None, 'exec': "libreoffice '/mnt/HD Externo/Sons/Sons.odb'"}
+                'Sons - Base DB':{'import_file': None, 'exec': "libreoffice '/mnt/HD Externo/Sons/Sons.odb'"},
+                'Modos - Planilha':{'import_file': None, 'exec': "libreoffice '/mnt/HD Externo/home/Documentos/Modos.odb'"}
 }
 
