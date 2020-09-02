@@ -19,11 +19,11 @@ class App:
         self.frame.pack()
 
         # list_font = ft.Font(family='Noto Sans', size=10, weight=ft.NORMAL)
-        list_style = {'width': 29, 'height': 21, 'bg': '#31363b', 'fg': '#eff0f1', 'highlightbackground': '#125487',
-                      'selectbackground': '#125487', 'selectforeground': 'orange'}
+        list_style = {'width': 30, 'height': 22, 'bg': '#31363b', 'fg': '#eff0f1', 'highlightbackground': '#125487',
+                      'selectbackground': '#125487', 'selectforeground': 'orange', 'font': 'Ubuntu 11'}
         self.frame_amps = Frame(self.frame, bg='#2b4970')
         self.frame_amps.grid(row=0, column=0)
-        Label(self.frame_amps, text='Apps', font='Ubuntu 11 bold',
+        Label(self.frame_amps, text='Apps', font='Ubuntu 12 bold',
               bg='#2b4970').grid(row=0, column=0)
         self.list_box_apps = Listbox(self.frame_amps, list_style)
         self.list_box_apps.grid(row=1, column=0, padx=(5,0), pady=2)
@@ -48,7 +48,7 @@ class App:
         # segunda lista
         self.frame_wine = Frame(self.frame, bg='#2b4970')
         self.frame_wine.grid(row=0, column=1)
-        Label(self.frame_wine, text='Wine', font='Ubuntu 11 bold',
+        Label(self.frame_wine, text='Wine', font='Ubuntu 12 bold',
               bg='#2b4970').grid(row=0, column=0)
         self.list_box_wine = Listbox(self.frame_wine, list_style)
         self.list_box_wine.grid(row=1, column=0, padx=(5, 0), pady=2)
@@ -72,7 +72,7 @@ class App:
         # terceira lista
         self.frame_songs = Frame(self.frame, bg='#2b4970')
         self.frame_songs.grid(row=0, column=2)
-        Label(self.frame_songs, text='Banks / Songs', font='Ubuntu 11 bold',
+        Label(self.frame_songs, text='Banks / Songs', font='Ubuntu 12 bold',
               bg='#2b4970').grid(row=0, column=0)
         self.list_box_banks_songs = Listbox(self.frame_songs, list_style)
         self.list_box_banks_songs.grid(row=1, column=0, padx=(5, 0), pady=2)
@@ -114,8 +114,8 @@ class App:
         self.root.resizable(False, False)
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
-        largura = 770
-        altura = 488
+        largura = 792
+        altura = 462
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
         altura_screen = self.root.winfo_screenheight()

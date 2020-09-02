@@ -32,12 +32,12 @@ class App:
         # demais widgets
         self.frame_lv2 = Frame(self.root, bg='#ca7d64')
         self.frame_lv2.pack()
-        Label(self.frame_lv2, text='Lv2', bg='#ca7d64', fg='black', font='Arial 11 bold',
+        Label(self.frame_lv2, text='Lv2', bg='#ca7d64', fg='black', font='Ubuntu 11 bold',
               pady=3).grid(row=0, column=0)
 
         self.list_lv2 = Listbox(self.frame_lv2,  width=85, height=18, bg='#31363b', fg='#eff0f1',
                                 highlightbackground='#125487', selectbackground='#125487',
-                                selectforeground='orange')
+                                selectforeground='orange', font='Ubuntu 11')
         self.list_lv2.grid(row=1, column=0, padx=(7,0))
         # com um Enter chama a rotina correspondente.
         self.list_lv2.bind("<Double-Button-1>", self.choice_select)
@@ -65,7 +65,7 @@ class App:
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
         largura = 710
-        altura = 425
+        altura = 385
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
         altura_screen = self.root.winfo_screenheight()

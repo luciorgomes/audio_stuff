@@ -22,11 +22,11 @@ class App:
         self.menu = Menu(self.root)
         self.menu_itens = Menu(self.menu, tearoff=0)
         self.menu_itens.add_command(
-            label='Audio Links',  font='Helvetiva 10', command=self.abre_audio_links)
+            label='Audio Links',  font='Ubuntu 10', command=self.abre_audio_links)
         self.menu_itens.add_command(
-            label='Songs',  font='Helvetiva 10', command=self.abre_songs)
+            label='Songs',  font='Ubuntu 10', command=self.abre_songs)
         self.menu.add_cascade(
-            label='Outros', font='Helvetiva 10', menu=self.menu_itens)
+            label='Outros', font='Ubuntu 10', menu=self.menu_itens)
         self.root.config(menu=self.menu)
 
         # create_widgets:
@@ -34,11 +34,11 @@ class App:
         self.frame1 = Frame(self.root, bg='#3e0000')  # 3877ad
         self.frame1.pack(fill=BOTH)
         Label(self.frame1, text='Amps', bg='#3e0000',
-              fg='#c2c2c2', font='Arial 11 bold', pady=3).pack(fill=BOTH, pady=(3,0))
+              fg='#c2c2c2', font='Ubuntu 11 bold', pady=3).pack(fill=BOTH, pady=(3,0))
 
         # list_font = ft.Font(family='Noto Sans', size=10, weight=ft.NORMAL)
-        list_style = {'width': 75, 'height': 11, 'bg': '#31363b', 'fg': '#eff0f1', 'highlightbackground': '#125487',
-                      'selectbackground': '#125487', 'selectforeground': 'orange'}
+        list_style = {'width': 75, 'height': 13, 'bg': '#31363b', 'fg': '#eff0f1', 'highlightbackground': '#125487',
+                      'selectbackground': '#125487', 'selectforeground': 'orange', 'font': 'Ubuntu 11'}
         self.frame_amps = Frame(self.root, bg='#3e0000')
         self.frame_amps.pack()
         self.list_amps = Listbox(self.frame_amps, list_style)
@@ -129,7 +129,7 @@ class App:
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
         largura = 630
-        altura = 898
+        altura = 925
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
         altura_screen = self.root.winfo_screenheight()
