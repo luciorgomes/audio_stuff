@@ -56,6 +56,7 @@ apps_dict={
     'TerminatorX': 'terminatorX',
     'tubeAmp Designer':'/home/lucio/bin/tubeAmp_Designer-x86_64.AppImage',
     'Tuner':'/home/lucio/bin/tuner',
+    'Ubuntu Studio Controls':'ubuntustudio-controls',
     'Waveform11': 'Waveform11',
     'Wolf-Spectrum': 'wolf-spectrum',
     'x42 Dynamic Compressor': 'x42-darc',
