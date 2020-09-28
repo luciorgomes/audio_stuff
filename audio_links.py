@@ -19,7 +19,7 @@ class App:
         self.frame.pack()
 
         # list_font = ft.Font(family='Noto Sans', size=10, weight=ft.NORMAL)
-        list_style = {'width': 30, 'height': 22, 'bg': '#31363b', 'fg': '#eff0f1', 'highlightbackground': '#125487',
+        list_style = {'width': 30, 'height': 32, 'bg': '#31363b', 'fg': '#eff0f1', 'highlightbackground': '#125487',
                       'selectbackground': '#125487', 'selectforeground': 'orange', 'font': 'Ubuntu 11'}
         self.frame_amps = Frame(self.frame, bg='#2b4970')
         self.frame_amps.grid(row=0, column=0)
@@ -115,7 +115,7 @@ class App:
         #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
         largura = 792
-        altura = 462
+        altura = 645
         # resolução da tela
         largura_screen = self.root.winfo_screenwidth()
         altura_screen = self.root.winfo_screenheight()
