@@ -70,6 +70,7 @@ apps_dict={
     'x42 Spectr': 'x42-spectr',
     'x42 MIDI Step Sequencer8x8': 'x42-stepseq',
     'x42 Instrument Tuner': 'x42-tuna',
+    'XTuner': 'xtuner',
     'Yoshimi': 'yoshimi',
     'ZaMaximX2': 'ZaMaximX2',
     'ZaMultiComp': 'ZaMultiComp',
