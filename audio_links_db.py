@@ -2,11 +2,8 @@
 # audio_links_db.py - relação de rotinas
 
 from tkinter import *
-# import tkinter.font as ft
 import os
 import sqlite3
-# from dict import apps_dict
-# from dict import wine_dict
 
 
 class App:
@@ -28,7 +25,7 @@ class App:
         Label(self.frame_amps, text='Apps', font='Ubuntu 12 bold',
               bg='#2b4970').grid(row=0, column=0)
         self.list_box_apps = Listbox(self.frame_amps, list_style)
-        self.list_box_apps.grid(row=1, column=0, padx=(5,0), pady=2)
+        self.list_box_apps.grid(row=1, column=0, padx=(5, 0), pady=2)
         self.scrollbar_apps = Scrollbar(self.frame_amps, relief=FLAT, bg='#2b4970', width=12, troughcolor='#2b4970')
         self.scrollbar_apps.grid(row=1, column=1, sticky=W + E + N + S)
         self.list_box_apps.config(yscrollcommand=self.scrollbar_apps.set)
@@ -79,7 +76,7 @@ class App:
         self.list_box_banks_songs = Listbox(self.frame_songs, list_style)
         self.list_box_banks_songs.grid(row=1, column=0, padx=(5, 0), pady=2)
         self.scrollbar_songs = Scrollbar(self.frame_songs, relief=FLAT, bg='#2b4970', width=12, troughcolor='#2b4970')
-        self.scrollbar_songs.grid(row=1, column=1, sticky=W + E + N + S, padx=(0,5))
+        self.scrollbar_songs.grid(row=1, column=1, sticky=W + E + N + S, padx=(0, 5))
         self.list_box_banks_songs.config(yscrollcommand=self.scrollbar_songs.set)
         self.scrollbar_songs.config(command=self.list_box_banks_songs.yview)
 
@@ -111,10 +108,10 @@ class App:
         self.root.mainloop()
 
     def define_raiz(self):
-        '''Define caracterísicas da janela'''
+        """Define caracterísicas da janela"""
         self.root.title('Audio Links')
         self.root.resizable(False, False)
-        #self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
+        # self.root.iconphoto(False, PhotoImage(file='Python-icon.png'))
         # dimensões da janela
         largura = 792
         altura = 645
@@ -194,7 +191,6 @@ def audio_links():
     app = App(db)
     # db.commit()
     db.close()
-
 
 
 if __name__ == '__main__':  # executa se chamado diretamente
