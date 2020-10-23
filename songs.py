@@ -145,7 +145,7 @@ class App:
     def choice_select_ardour(self, event=None):
         '''Recupera o item selecionado no Listbox e chama o método chama_rotina()'''
         choice_ard = self.list_ard_mix.get(ACTIVE)
-        print(f'Executando ardour {choice_ard}')
+        print(f'Executando ardour6 {choice_ard}')
         # self.root.destroy()
         os.system(f"ardour '{ARDOUR_FOLDER}{choice_ard}.ardour' &")
 

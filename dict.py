@@ -3,7 +3,7 @@ apps_dict={
     'Aeolus': 'aeolus',
     'Ams': 'ams',
     'Amsynth': 'amsynth',
-    'Ardour': 'ardour',
+    'Ardour': 'ardour6',
     'Arpage': 'arpage',
     'Cadence Logs': 'cadence-logs',
     'Cadence Jack Meter': 'cadence-jackmeter',
